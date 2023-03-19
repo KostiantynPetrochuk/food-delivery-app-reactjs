@@ -5,13 +5,9 @@ import "./CategoryList.scss";
 
 const CategoryList = (props: { dishes: Dish[] }): JSX.Element => {
   const { dishes } = props;
-  const categoryName = dishes[0]?.dishCategory.name;
+  const categoryName: string = dishes[0]?.dishCategory.name;
 
-  if (!dishes.length) {
-    return <div>Loading...</div>;
-  }
-
-  const content = dishes.map((dish) => {
+  const content: JSX.Element[] = dishes.map((dish) => {
     return (
       <DishCard
         key={dish._id}

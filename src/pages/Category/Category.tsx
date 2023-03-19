@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import BreadCrumbs from "../../components/BreadCrumbs";
-import getDishesByCategoryId from "../../library/getDishesByCategoryId";
+import Spinner from "../../components/Spinner";
 import { CategoryList } from "../../partials/Category";
+import getDishesByCategoryId from "../../library/getDishesByCategoryId";
 
 export interface Dish {
   _id: string;
@@ -20,11 +21,13 @@ export interface Dish {
 
 const Category = (): JSX.Element => {
   const [dishes, setDishes] = useState<Dish[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getDishesByCategoryId("63f3d0cf24e1d071ed3d074f")
       .then((data) => {
         setDishes(data);
+        setLoading(false);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -32,7 +35,7 @@ const Category = (): JSX.Element => {
   return (
     <main className="main">
       <BreadCrumbs />
-      <CategoryList dishes={dishes} />
+      {loading ? <Spinner /> : <CategoryList dishes={dishes} />}
     </main>
   );
 };
