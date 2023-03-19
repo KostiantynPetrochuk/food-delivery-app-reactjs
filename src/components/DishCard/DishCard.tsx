@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 import "./DishCard.scss";
 
 type DishCardPropsType = {
+  id: string;
   imagePath: string;
   dishName: string;
   ingredients: string;
@@ -8,7 +11,7 @@ type DishCardPropsType = {
 };
 
 const DishCard = (props: DishCardPropsType): JSX.Element => {
-  const { imagePath, dishName, ingredients, price } = props;
+  const { id, imagePath, dishName, ingredients, price } = props;
   const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
 
   return (
@@ -19,7 +22,9 @@ const DishCard = (props: DishCardPropsType): JSX.Element => {
         alt={""}
       />
       <div className="dishes-list-item-body">
-        <span className="dishes-list-item-body__title">{dishName}</span>
+        <Link to={`/dish/${id}`} className="dishes-list-item-body__title">
+          {dishName}
+        </Link>
         <span className="dishes-list-item-ingredients">{ingredients}</span>
         <div className="dishes-list-item-bot">
           <span className="dishes-list-item__price">{price}грн</span>

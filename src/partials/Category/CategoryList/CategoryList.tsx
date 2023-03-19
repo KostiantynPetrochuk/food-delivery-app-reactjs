@@ -1,15 +1,16 @@
 import DishCard from "../../../components/DishCard";
-import { Dish } from "../../../pages/Category/Category";
+import { DishT } from "../../../pages/Category/Category";
 import createIngredientsString from "../../../helpers/createIngredientsString";
 
 import "./CategoryList.scss";
 
-const CategoryList = (props: { dishes: Dish[] }): JSX.Element => {
+const CategoryList = (props: { dishes: DishT[] }): JSX.Element => {
   const { dishes } = props;
   const categoryName: string = dishes[0]?.dishCategory.name;
 
-  const content: JSX.Element[] = dishes.map((dish: Dish) => {
+  const content: JSX.Element[] = dishes.map((dish: DishT) => {
     const { _id, imagePath, name, ingredients, price } = dish;
+
     const ingredientsString: string = ingredients.length
       ? createIngredientsString(ingredients)
       : "";
@@ -17,6 +18,7 @@ const CategoryList = (props: { dishes: Dish[] }): JSX.Element => {
     return (
       <DishCard
         key={_id}
+        id={_id}
         imagePath={imagePath}
         dishName={name}
         ingredients={ingredientsString}

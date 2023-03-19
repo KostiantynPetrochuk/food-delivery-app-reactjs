@@ -6,6 +6,7 @@ type OrderingPropsType = {
 const OrderingInput = (props: OrderingPropsType): JSX.Element => {
   const { inputName, inputClassName } = props;
   const labelClassName = `basket-ordering-${inputClassName}`;
+
   return (
     <label className={labelClassName}>
       <span className="basket-ordering-input__name">{inputName}</span>

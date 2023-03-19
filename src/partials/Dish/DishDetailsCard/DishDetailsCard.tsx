@@ -1,15 +1,15 @@
+import createIngredientsString from "../../../helpers/createIngredientsString";
+import { DishT } from "../../../pages/Category/Category";
 import "./DishDetailsCard.scss";
 
-type DishDetailsCardPropsType = {
-  imagePath: string;
-  name: string;
-  weight: number;
-  ingredients: string;
-  price: number;
-};
+const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
+  const { dish } = props;
 
-const DishDetailsCard = (props: DishDetailsCardPropsType): JSX.Element => {
-  const { imagePath, name, weight, ingredients, price } = props;
+  const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
+
+  const ingredientsString: string = dish?.ingredients.length
+    ? createIngredientsString(dish?.ingredients)
+    : "";
 
   return (
     <section className="dish-details">
@@ -17,19 +17,27 @@ const DishDetailsCard = (props: DishDetailsCardPropsType): JSX.Element => {
         <div className="dish-details-inner">
           <div className="dish-card">
             <div className="dish-card-img-inner">
-              <img className="dish-card__img" src={imagePath} alt={""} />
+              <img
+                className="dish-card__img"
+                src={`${apiUrl}${dish?.imagePath}`}
+                alt={""}
+              />
             </div>
             <div className="dish-card-details">
               <div className="dish-card-top">
-                <span className="dish-card__weight">{weight}г</span>
-                <span className="dish-card__name">{name}</span>
+                <span className="dish-card__weight">{dish?.weight}г</span>
+                <span className="dish-card__name">{dish?.name}</span>
               </div>
               <div className="dish-card-mid">
-                <span className="dish-card__ingredients">{ingredients}</span>
+                <span className="dish-card__ingredients">
+                  {ingredientsString}
+                </span>
               </div>
               <div className="dish-card-bot">
                 <div className="dish-card-total">
-                  <span className="dish-card-total-price">{price}грн</span>
+                  <span className="dish-card-total-price">
+                    {dish?.price}грн
+                  </span>
                   <div className="dish-card-total__counter">
                     <div className="dish-card-total__remove">-</div>
                     <div className="dish-card-total__count">3</div>

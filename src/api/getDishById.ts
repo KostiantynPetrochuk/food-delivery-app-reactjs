@@ -1,14 +1,14 @@
 import { DishT } from "../pages/Category/Category";
 import { API_URL, API_PORT } from "../env";
 
-const getDishesByCategoryId = async (
-  categoryId: string | undefined
-): Promise<DishT[]> => {
-  if (!categoryId) return [];
+const getDishById = async (
+  dishId: string | undefined
+): Promise<DishT | null> => {
+  if (!dishId) return null;
 
   const apiUrl: string = `${API_URL}:${API_PORT}`;
 
-  const queryString: string = `${apiUrl}/api/dish/byDishCategory/${categoryId}`;
+  const queryString: string = `${apiUrl}/api/dish/${dishId}`;
 
   const res: Response = await fetch(queryString);
 
@@ -17,4 +17,4 @@ const getDishesByCategoryId = async (
   return res.json();
 };
 
-export default getDishesByCategoryId;
+export default getDishById;

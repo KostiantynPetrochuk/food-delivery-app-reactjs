@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import { Category, Home } from "./pages";
+import { Category, Dish, Home, Error } from "./pages";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -17,6 +17,8 @@ const App = (): JSX.Element => {
           <Route index element={<Category />} />
           <Route path=":categoryId" element={<Category />} />
         </Route>
+        <Route path="/dish/:dishId" element={<Dish />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </div>

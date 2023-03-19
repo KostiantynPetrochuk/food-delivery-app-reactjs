@@ -7,7 +7,7 @@ import { CategoryList } from "../../partials/Category";
 
 import getDishesByCategoryId from "../../api/getDishesByCategoryId";
 
-export type Dish = {
+export type DishT = {
   _id: string;
   name: string;
   imagePath: string;
@@ -23,7 +23,7 @@ export type Dish = {
 };
 
 const Category = (): JSX.Element => {
-  const [dishes, setDishes] = useState<Dish[]>([]);
+  const [dishes, setDishes] = useState<DishT[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { categoryId } = useParams();
 
