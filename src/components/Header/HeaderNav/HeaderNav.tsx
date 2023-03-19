@@ -2,15 +2,35 @@ import HeaderNavLink from "../HeaderNavLink";
 import "./HeaderNav.scss";
 
 const HeaderNav = (): JSX.Element => {
+  const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
+
   return (
     <nav className="header-bot-menu">
       <ul className="header-bot-menu-list">
-        <HeaderNavLink imagePath={"/img/pasta.svg"} categoryName={"Паста"} />
-        <HeaderNavLink imagePath={"/img/pizza.svg"} categoryName={"Піца"} />
-        <HeaderNavLink imagePath={"/img/ramen.svg"} categoryName={"Рамен"} />
-        <HeaderNavLink imagePath={"/img/rolls.svg"} categoryName={"Роли"} />
-        <HeaderNavLink imagePath={"/img/sauce.svg"} categoryName={"Соуси"} />
-        <HeaderNavLink imagePath={"/img/drinks.svg"} categoryName={"Напої"} />
+        <HeaderNavLink
+          imagePath={`${apiUrl}/static/categories_logo/pasta.svg`}
+          categoryName={"Паста"}
+        />
+        <HeaderNavLink
+          imagePath={`${apiUrl}/static/categories_logo/pizza.svg`}
+          categoryName={"Піца"}
+        />
+        <HeaderNavLink
+          imagePath={`${apiUrl}/static/categories_logo/ramen.svg`}
+          categoryName={"Рамен"}
+        />
+        <HeaderNavLink
+          imagePath={`${apiUrl}/static/categories_logo/rolls.svg`}
+          categoryName={"Роли"}
+        />
+        <HeaderNavLink
+          imagePath={`${apiUrl}/static/categories_logo/sauce.svg`}
+          categoryName={"Соуси"}
+        />
+        <HeaderNavLink
+          imagePath={`${apiUrl}/static/categories_logo/drinks.svg`}
+          categoryName={"Напої"}
+        />
       </ul>
     </nav>
   );
