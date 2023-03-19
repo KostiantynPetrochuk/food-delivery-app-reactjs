@@ -1,9 +1,10 @@
 import { HomeNoveltyItem } from "..";
+import { API_URL, API_PORT } from "../../../env";
 import "./HomeNovelty.scss";
 
 const HomeNovelty = (): JSX.Element => {
-  const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
-  // const imageSrc = `${apiUrl}${imagePath}`;
+  const apiUrl = `${API_URL}:${API_PORT}`;
+
   return (
     <section className="novelty">
       <div className="container">

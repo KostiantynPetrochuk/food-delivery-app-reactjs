@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import BreadCrumbs from "../../components/BreadCrumbs";
+import getDishesByCategoryId from "../../library/getDishesByCategoryId";
 import { CategoryList } from "../../partials/Category";
 
 export interface Dish {
@@ -17,22 +19,16 @@ export interface Dish {
 }
 
 const Category = (): JSX.Element => {
-  const dishes = [
-    {
-      _id: "63f3d93224e1d071ed3d07a2",
-      name: "Прошуто Фунгі",
-      imagePath: "/static/dishes/pizza/proshuto_fungi.webp",
-      weight: 430,
-      price: 165,
-      isNovelty: false,
-      dishCategory: {
-        _id: "63f3d0cf24e1d071ed3d074f",
-        name: "Піца",
-      },
-      __v: 0,
-      ingredients: ["шинка", "соус томатний", "гриби", "сир моцарела"],
-    },
-  ];
+  const [dishes, setDishes] = useState<Dish[]>([]);
+
+  useEffect(() => {
+    getDishesByCategoryId("63f3d0cf24e1d071ed3d074f")
+      .then((data) => {
+        setDishes(data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <main className="main">
       <BreadCrumbs />
