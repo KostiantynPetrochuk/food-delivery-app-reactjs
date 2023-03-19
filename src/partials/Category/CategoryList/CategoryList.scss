@@ -1,0 +1,32 @@
+.category {
+  &-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-name {
+    color: #f7d22d;
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  &-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0;
+
+    @media screen and (max-width: 1200px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    @media screen and (max-width: 800px) {
+      display: flex;
+    }
+  }
+}
+
+.dishes-list-item {
+  margin: 10px 0;
+}
