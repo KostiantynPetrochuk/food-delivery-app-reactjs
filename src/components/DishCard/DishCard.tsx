@@ -1,11 +1,11 @@
 import "./DishCard.scss";
 
-interface DishCardPropsType {
+type DishCardPropsType = {
   imagePath: string;
   dishName: string;
   ingredients: string;
   price: number;
-}
+};
 
 const DishCard = (props: DishCardPropsType): JSX.Element => {
   const { imagePath, dishName, ingredients, price } = props;

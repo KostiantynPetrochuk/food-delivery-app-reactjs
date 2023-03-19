@@ -1,12 +1,12 @@
 import "./DishDetailsCard.scss";
 
-interface DishDetailsCardPropsType {
+type DishDetailsCardPropsType = {
   imagePath: string;
   name: string;
   weight: number;
   ingredients: string;
   price: number;
-}
+};
 
 const DishDetailsCard = (props: DishDetailsCardPropsType): JSX.Element => {
   const { imagePath, name, weight, ingredients, price } = props;

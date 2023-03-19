@@ -1,7 +1,11 @@
 import { Dish } from "../pages/Category/Category";
 import { API_URL, API_PORT } from "../env";
 
-const getDishesByCategoryId = async (categoryId: string): Promise<Dish[]> => {
+const getDishesByCategoryId = async (
+  categoryId: string | undefined
+): Promise<Dish[]> => {
+  if (!categoryId) return [];
+
   const apiUrl: string = `${API_URL}:${API_PORT}`;
 
   const queryString: string = `${apiUrl}/api/dish/byDishCategory/${categoryId}`;

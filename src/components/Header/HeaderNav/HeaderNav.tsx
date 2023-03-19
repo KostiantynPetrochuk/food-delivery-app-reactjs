@@ -1,37 +1,24 @@
 import HeaderNavLink from "../HeaderNavLink";
+import { DISH_CATEGORIES } from "../../../constants/dishCategories";
+
 import "./HeaderNav.scss";
 
 const HeaderNav = (): JSX.Element => {
-  const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
+  const navLinks = DISH_CATEGORIES.map((category) => {
+    const { _id, logoPath, name } = category;
+    return (
+      <HeaderNavLink
+        key={_id}
+        id={_id}
+        logoPath={logoPath}
+        categoryName={name}
+      />
+    );
+  });
 
   return (
     <nav className="header-bot-menu">
-      <ul className="header-bot-menu-list">
-        <HeaderNavLink
-          imagePath={`${apiUrl}/static/categories_logo/pasta.svg`}
-          categoryName={"Паста"}
-        />
-        <HeaderNavLink
-          imagePath={`${apiUrl}/static/categories_logo/pizza.svg`}
-          categoryName={"Піца"}
-        />
-        <HeaderNavLink
-          imagePath={`${apiUrl}/static/categories_logo/ramen.svg`}
-          categoryName={"Рамен"}
-        />
-        <HeaderNavLink
-          imagePath={`${apiUrl}/static/categories_logo/rolls.svg`}
-          categoryName={"Роли"}
-        />
-        <HeaderNavLink
-          imagePath={`${apiUrl}/static/categories_logo/sauce.svg`}
-          categoryName={"Соуси"}
-        />
-        <HeaderNavLink
-          imagePath={`${apiUrl}/static/categories_logo/drinks.svg`}
-          categoryName={"Напої"}
-        />
-      </ul>
+      <ul className="header-bot-menu-list">{navLinks}</ul>
     </nav>
   );
 };

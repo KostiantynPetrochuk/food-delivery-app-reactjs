@@ -1,10 +1,10 @@
 import "./BasketSauce.scss";
 
-interface BasketSaucePropsType {
+type BasketSaucePropsType = {
   imagePath: string;
   name: string;
   price: number;
-}
+};
 
 const BasketSauce = (props: BasketSaucePropsType): JSX.Element => {
   const { imagePath, name, price } = props;

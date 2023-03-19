@@ -1,8 +1,8 @@
 import "./HomeEventsItem.scss";
 
-interface HomeEventsItemPropsType {
+type HomeEventsItemPropsType = {
   imagePath: string;
-}
+};
 
 const HomeEventsItem = (props: HomeEventsItemPropsType): JSX.Element => {
   const { imagePath } = props;

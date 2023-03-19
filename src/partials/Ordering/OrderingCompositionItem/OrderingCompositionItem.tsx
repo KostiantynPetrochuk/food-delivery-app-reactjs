@@ -1,10 +1,10 @@
 import "./OrderingCompositionItem.scss";
 
-interface OrderingCompositionItemPropsType {
+type OrderingCompositionItemPropsType = {
   name: string;
   price: number;
   count: number;
-}
+};
 
 const OrderingCompositionItem = (
   props: OrderingCompositionItemPropsType

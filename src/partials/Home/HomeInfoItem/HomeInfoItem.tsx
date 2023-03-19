@@ -1,9 +1,9 @@
 import "./HomeInfoItem.scss";
 
-interface HomeInfoItemPropsType {
+type HomeInfoItemPropsType = {
   imagePath: string;
   title: string;
-}
+};
 
 const HomeInfoItem = (props: HomeInfoItemPropsType): JSX.Element => {
   const { imagePath, title } = props;

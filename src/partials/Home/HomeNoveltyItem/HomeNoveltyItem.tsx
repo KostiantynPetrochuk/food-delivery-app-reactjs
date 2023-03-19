@@ -1,10 +1,10 @@
 import "./HomeNoveltyItem.scss";
 
-interface HomeNoveltyItemPropsType {
+type HomeNoveltyItemPropsType = {
   imagePath: string;
   name: string;
   price: number;
-}
+};
 
 const HomeNoveltyItem = (props: HomeNoveltyItemPropsType): JSX.Element => {
   const { imagePath, name, price } = props;

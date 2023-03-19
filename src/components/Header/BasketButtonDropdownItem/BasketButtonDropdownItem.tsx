@@ -1,11 +1,11 @@
 import "./BasketButtonDropdownItem.scss";
 
-interface BasketButtonDropdownItemPropTypes {
+type BasketButtonDropdownItemPropTypes = {
   imagePath: string;
   dishName: string;
   count: number;
   price: number;
-}
+};
 
 const BasketButtonDropdownItem = (
   props: BasketButtonDropdownItemPropTypes

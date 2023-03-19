@@ -1,4 +1,3 @@
-"use strict";
 window.addEventListener("load", function () {
   const mobMenuButton = document.getElementById("mob_menu_btn");
   const mobMenu = document.getElementById("mob_menu");

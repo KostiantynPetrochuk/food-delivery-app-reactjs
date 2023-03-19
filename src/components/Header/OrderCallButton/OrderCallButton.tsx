@@ -1,8 +1,8 @@
 import "./OrderCallButton.scss";
 
-interface OrderCallButtonPropsType {
+type OrderCallButtonPropsType = {
   addClassName?: string;
-}
+};
 
 const OrderCallButton = (props: OrderCallButtonPropsType): JSX.Element => {
   const { addClassName } = props;

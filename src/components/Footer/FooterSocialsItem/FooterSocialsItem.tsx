@@ -1,8 +1,8 @@
 import "./FooterSocialsItem.scss";
 
-interface FooterSocialsItempropsType {
+type FooterSocialsItempropsType = {
   imagePath: string;
-}
+};
 
 const FooterSocialsItem = (props: FooterSocialsItempropsType): JSX.Element => {
   const { imagePath } = props;

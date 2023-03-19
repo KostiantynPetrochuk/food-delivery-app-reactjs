@@ -10,7 +10,9 @@ const CategoryList = (props: { dishes: Dish[] }): JSX.Element => {
 
   const content: JSX.Element[] = dishes.map((dish: Dish) => {
     const { _id, imagePath, name, ingredients, price } = dish;
-    const ingredientsString: string = createIngredientsString(ingredients);
+    const ingredientsString: string = ingredients.length
+      ? createIngredientsString(ingredients)
+      : "";
 
     return (
       <DishCard

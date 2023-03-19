@@ -1,12 +1,12 @@
 import "./BasketCustom.scss";
 
-interface BasketCustomPropsType {
+type BasketCustomPropsType = {
   imagePath: string;
   name: string;
   ingredients: string;
   price: number;
   count: number;
-}
+};
 
 const BasketCustom = (props: BasketCustomPropsType): JSX.Element => {
   const { imagePath, name, ingredients, price, count } = props;

@@ -1,9 +1,9 @@
 import "./OrderPhone.scss";
 
-interface OrderPhonePropsType {
+type OrderPhonePropsType = {
   addClassName?: string;
   phone: string;
-}
+};
 
 const OrderPhone = (props: OrderPhonePropsType): JSX.Element => {
   const { addClassName, phone } = props;

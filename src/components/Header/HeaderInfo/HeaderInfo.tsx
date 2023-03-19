@@ -1,12 +1,12 @@
 import "./HeaderInfo.scss";
 
-interface HeaderInfoPropsType {
+type HeaderInfoPropsType = {
   city: string;
   deliveryTime: string;
-}
+};
 
 const HeaderInfo = (props: HeaderInfoPropsType): JSX.Element => {
-  const {city, deliveryTime} = props;
+  const { city, deliveryTime } = props;
 
   return (
     <div className="header-info">

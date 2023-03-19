@@ -1,18 +1,24 @@
+import { Link } from "react-router-dom";
+import { API_PORT, API_URL } from "../../../env";
+
 import "./HeaderNavLink.scss";
 
-interface HeaderNavLinkPropsType {
-  imagePath: string;
+type HeaderNavLinkPropsType = {
+  id: string;
+  logoPath: string;
   categoryName: string;
-}
+};
 
 const HeaderNavLink = (props: HeaderNavLinkPropsType): JSX.Element => {
-  const { imagePath, categoryName } = props;
+  const { id, logoPath, categoryName } = props;
+  const apiUrl: string = `${API_URL}:${API_PORT}`;
+
   return (
     <li className="header-bot-menu-list-item">
-      <a href="#" className="header-bot-menu-list-item__link">
-        <img src={imagePath} alt={""} />
+      <Link to={`/category/${id}`} className="header-bot-menu-list-item__link">
+        <img src={`${apiUrl}${logoPath}`} alt={""} />
         <span>{categoryName}</span>
-      </a>
+      </Link>
     </li>
   );
 };

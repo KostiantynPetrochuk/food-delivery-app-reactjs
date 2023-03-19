@@ -1,7 +1,7 @@
-interface OrderingPropsType {
+type OrderingPropsType = {
   inputName: string;
   inputClassName: string;
-}
+};
 
 const OrderingInput = (props: OrderingPropsType): JSX.Element => {
   const { inputName, inputClassName } = props;
