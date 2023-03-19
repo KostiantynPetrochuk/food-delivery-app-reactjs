@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import Spinner from "../../components/Spinner";
 import { CategoryList } from "../../partials/Category";
-import getDishesByCategoryId from "../../library/getDishesByCategoryId";
+import getDishesByCategoryId from "../../api/getDishesByCategoryId";
 
 export interface Dish {
   _id: string;
