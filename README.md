@@ -3,7 +3,6 @@
 ### Technologies
 
 ![JavaScript](https://img.shields.io/badge/-TypeScript-darkblue)
-![Nestjs](https://img.shields.io/badge/-NestJS-darkred)
-![Node.js](https://img.shields.io/badge/-Node.js-brightgreen)
-![Express.js](https://img.shields.io/badge/-Express.js-white)
-![mongoDB](https://img.shields.io/badge/-MongoDB-darkgreen)
+![ReactJS](https://img.shields.io/badge/-ReactJS-blue)
+![HTML](https://img.shields.io/badge/-HTML-orange)
+![SCSS](https://img.shields.io/badge/-SCSS-violet)
