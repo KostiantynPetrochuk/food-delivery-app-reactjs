@@ -9,7 +9,7 @@ const CategoryList = (props: { dishes: DishT[] }): JSX.Element => {
   const categoryName: string = dishes[0]?.dishCategory.name;
 
   const content: JSX.Element[] = dishes.map((dish: DishT) => {
-    const { _id, imagePath, name, ingredients, price } = dish;
+    const { _id, imagePath, name, ingredients, price, slug } = dish;
 
     const ingredientsString: string = ingredients.length
       ? createIngredientsString(ingredients)
@@ -23,6 +23,7 @@ const CategoryList = (props: { dishes: DishT[] }): JSX.Element => {
         dishName={name}
         ingredients={ingredientsString}
         price={price}
+        slug={slug}
       />
     );
   });

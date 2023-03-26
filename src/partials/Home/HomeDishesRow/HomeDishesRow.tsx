@@ -15,6 +15,7 @@ const HomeDishesRow = (): JSX.Element => {
                     комбу, азіатський гриб, морква, зелена цибуля, мариноване
                     яйце, кунжут"
           price={250}
+          slug={"nigoshi_ramen_with_teriyaki_chicken"}
         />
         <DishCard
           id="8fc5uq30ftc8uyqc8"
@@ -24,6 +25,7 @@ const HomeDishesRow = (): JSX.Element => {
                     комбу, азіатський гриб, морква, зелена цибуля, мариноване
                     яйце, кунжут"
           price={250}
+          slug={"ramen_with_seafood"}
         />
         <DishCard
           id="8fc5uq30ftc8uyqc8"
@@ -33,6 +35,7 @@ const HomeDishesRow = (): JSX.Element => {
                     комбу, азіатський гриб, морква, зелена цибуля, мариноване
                     яйце, кунжут"
           price={250}
+          slug={"ramen_with_smoked_chicken"}
         />
         <DishCard
           id="8fc5uq30ftc8uyqc8"
@@ -42,6 +45,7 @@ const HomeDishesRow = (): JSX.Element => {
                     комбу, азіатський гриб, морква, зелена цибуля, мариноване
                     яйце, кунжут"
           price={250}
+          slug={"ramen_curry_with_shrimp"}
         />
       </ul>
       <HomeMoreDishesButton />

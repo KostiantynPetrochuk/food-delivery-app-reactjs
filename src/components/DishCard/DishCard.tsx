@@ -8,10 +8,11 @@ type DishCardPropsType = {
   dishName: string;
   ingredients: string;
   price: number;
+  slug: string;
 };
 
 const DishCard = (props: DishCardPropsType): JSX.Element => {
-  const { id, imagePath, dishName, ingredients, price } = props;
+  const { imagePath, dishName, ingredients, price, slug } = props;
   const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
 
   return (
@@ -22,7 +23,7 @@ const DishCard = (props: DishCardPropsType): JSX.Element => {
         alt={""}
       />
       <div className="dishes-list-item-body">
-        <Link to={`/dish/${id}`} className="dishes-list-item-body__title">
+        <Link to={`/dish/${slug}`} className="dishes-list-item-body__title">
           {dishName}
         </Link>
         <span className="dishes-list-item-ingredients">{ingredients}</span>
