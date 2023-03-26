@@ -15,9 +15,9 @@ const App = (): JSX.Element => {
         <Route path="/" element={<Home />} />
         <Route path="/category" element={<Category />}>
           <Route index element={<Category />} />
-          <Route path=":categoryId" element={<Category />} />
+          <Route path=":slug" element={<Category />} />
         </Route>
-        <Route path="/dish/:dishId" element={<Dish />} />
+        <Route path="/dish/:slug" element={<Dish />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

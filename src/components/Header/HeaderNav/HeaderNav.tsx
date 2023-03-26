@@ -5,13 +5,13 @@ import "./HeaderNav.scss";
 
 const HeaderNav = (): JSX.Element => {
   const navLinks = DISH_CATEGORIES.map((category) => {
-    const { _id, logoPath, name } = category;
+    const { _id, logoPath, name, slug } = category;
     return (
       <HeaderNavLink
         key={_id}
-        id={_id}
         logoPath={logoPath}
         categoryName={name}
+        slug={slug}
       />
     );
   });

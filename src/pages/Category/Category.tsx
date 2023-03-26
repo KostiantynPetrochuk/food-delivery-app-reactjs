@@ -5,7 +5,7 @@ import BreadCrumbs from "../../components/BreadCrumbs";
 import Spinner from "../../components/Spinner";
 import { CategoryList } from "../../partials/Category";
 
-import getDishesByCategoryId from "../../api/getDishesByCategoryId";
+import getDishesByCategorySlug from "../../api/getDishesByCategorySlug";
 
 export type DishT = {
   _id: string;
@@ -14,6 +14,7 @@ export type DishT = {
   weight: number;
   price: number;
   isNovelty: boolean;
+  slug: string;
   dishCategory: {
     _id: string;
     name: string;
@@ -25,16 +26,16 @@ export type DishT = {
 const Category = (): JSX.Element => {
   const [dishes, setDishes] = useState<DishT[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const { categoryId } = useParams();
+  const { slug } = useParams();
 
   useEffect(() => {
-    getDishesByCategoryId(categoryId)
+    getDishesByCategorySlug(slug)
       .then((data) => {
         setDishes(data);
         setLoading(false);
       })
       .catch((error) => console.error(error));
-  }, [categoryId]);
+  }, [slug]);
 
   return (
     <main className="main">

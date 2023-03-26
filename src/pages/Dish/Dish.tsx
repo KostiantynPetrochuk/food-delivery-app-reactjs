@@ -6,21 +6,21 @@ import Spinner from "../../components/Spinner";
 import { DishDetailsCard } from "../../partials/Dish";
 import { DishT } from "../Category/Category";
 
-import getDishById from "../../api/getDishById";
+import getDishBySlug from "../../api/getDishBySlug";
 
 const Dish = (): JSX.Element => {
   const [dish, setDish] = useState<DishT | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const { dishId } = useParams();
+  const { slug } = useParams();
 
   useEffect(() => {
-    getDishById(dishId)
+    getDishBySlug(slug)
       .then((data) => {
         setDish(data);
         setLoading(false);
       })
       .catch((error) => console.error(error));
-  }, [dishId]);
+  }, [slug]);
 
   return (
     <main className="main">
