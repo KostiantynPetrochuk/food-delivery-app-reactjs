@@ -23,14 +23,6 @@
     align-items: center;
     padding: 0;
     list-style: none;
-
-    &-item__link {
-      display: inline-block;
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
-      margin: 5px 0;
-    }
   }
 }
 
@@ -72,7 +64,3 @@
     margin: 10px 0;
   }
 }
-
-
-
-
