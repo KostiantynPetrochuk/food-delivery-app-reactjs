@@ -1,4 +1,4 @@
-type DishCategory = {
+export type DishCategory = {
   _id: string;
   name: string;
   __v: number;

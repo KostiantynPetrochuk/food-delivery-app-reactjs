@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import BasketButton from "./BasketButton";
 import HeaderInfo from "./HeaderInfo";
 import HeaderMob from "./HeaderMob";
@@ -9,9 +11,11 @@ import OrderPhone from "./OrderPhone";
 import "./Header.scss";
 
 const Header = (): JSX.Element => {
+  const [mobMenuState, setMobMenuState] = useState<boolean>(false);
+
   return (
     <header className="header">
-      <MobMenu />
+      <MobMenu mobMenuState={mobMenuState} setMobMenuState={setMobMenuState} />
       <div className="container">
         <div className="header-top">
           <div className="header-top-left">
@@ -35,7 +39,10 @@ const Header = (): JSX.Element => {
             <BasketButton />
           </div>
         </div>
-        <HeaderMob />
+        <HeaderMob
+          mobMenuState={mobMenuState}
+          setMobMenuState={setMobMenuState}
+        />
       </div>
     </header>
   );
