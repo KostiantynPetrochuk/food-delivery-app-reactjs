@@ -1,37 +1,35 @@
 import { HomeNoveltyItem } from "..";
 import { API_URL, API_PORT } from "../../../env";
+import { DishT } from "../../../pages/Category/Category";
+
 import "./HomeNovelty.scss";
 
-const HomeNovelty = (): JSX.Element => {
+type HomeNoveltyPropsType = {
+  novelties: DishT[] | undefined;
+};
+
+const HomeNovelty = (props: HomeNoveltyPropsType): JSX.Element => {
+  const { novelties } = props;
   const apiUrl = `${API_URL}:${API_PORT}`;
+
+  const noveltiesList = novelties?.map(
+    ({ _id, imagePath, name, price, slug }) => (
+      <HomeNoveltyItem
+        key={_id}
+        imagePath={`${apiUrl}${imagePath}`}
+        name={name}
+        price={price}
+        slug={slug}
+      />
+    )
+  );
 
   return (
     <section className="novelty">
       <div className="container">
         <div className="novelty-inner">
           <h3 className="novelty-title">Новинки</h3>
-          <ul className="novelty-items">
-            <HomeNoveltyItem
-              imagePath={`${apiUrl}/static/dishes/pizza/caesar.webp`}
-              name="Цезар"
-              price={240}
-            />
-            <HomeNoveltyItem
-              imagePath={`${apiUrl}/static/dishes/ramen/pho_bo_with_beef.webp`}
-              name="Фо бо зі свининою"
-              price={240}
-            />
-            <HomeNoveltyItem
-              imagePath={`${apiUrl}/static/dishes/rolls/red_dragon.webp`}
-              name="Червоний дракон"
-              price={240}
-            />
-            <HomeNoveltyItem
-              imagePath={`${apiUrl}/static/dishes/pasta/pasta_carbonara.webp`}
-              name="Карбонара"
-              price={240}
-            />
-          </ul>
+          <ul className="novelty-items">{noveltiesList}</ul>
         </div>
       </div>
     </section>

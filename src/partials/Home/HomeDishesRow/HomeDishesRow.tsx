@@ -1,53 +1,38 @@
 import { HomeMoreDishesButton } from "..";
 import DishCard from "../../../components/DishCard";
+import { DishT } from "../../../pages/Category/Category";
+import createIngredientsString from "../../../helpers/createIngredientsString";
+
 import "./HomeDishesRow.scss";
 
-const HomeDishesRow = (): JSX.Element => {
+const HomeDishesRow = (props: {
+  dishes: DishT[];
+  categoryName: string;
+}): JSX.Element => {
+  const { dishes, categoryName } = props;
+
+  const dishesList = dishes.map(
+    ({ _id, imagePath, name, price, slug, ingredients }) => {
+      const ingredientsString = createIngredientsString(ingredients);
+
+      return (
+        <DishCard
+          key={_id}
+          id={_id}
+          imagePath={imagePath}
+          dishName={name}
+          ingredients={ingredientsString}
+          price={price}
+          slug={slug}
+        />
+      );
+    }
+  );
+
   return (
     <div className="dishes-row">
-      <h3 className="dishes-list__title">Рамен</h3>
-      <ul className="dishes-list">
-        <DishCard
-          id="8fc5uq30ftc8uyqc8"
-          imagePath={`/static/dishes/ramen/nigoshi_ramen_with_teriyaki_chicken.webp`}
-          dishName="Рамен Нігоші з куркою теріякі"
-          ingredients="Бульйон з соусом нігоші, локшина, курка теріякі, водорості
-                    комбу, азіатський гриб, морква, зелена цибуля, мариноване
-                    яйце, кунжут"
-          price={250}
-          slug={"nigoshi_ramen_with_teriyaki_chicken"}
-        />
-        <DishCard
-          id="8fc5uq30ftc8uyqc8"
-          imagePath={`/static/dishes/ramen/ramen_with_seafood.webp`}
-          dishName=" Рамен з морепродуктами"
-          ingredients="Бульйон з соусом нігоші, локшина, курка теріякі, водорості
-                    комбу, азіатський гриб, морква, зелена цибуля, мариноване
-                    яйце, кунжут"
-          price={250}
-          slug={"ramen_with_seafood"}
-        />
-        <DishCard
-          id="8fc5uq30ftc8uyqc8"
-          imagePath={`/static/dishes/ramen/ramen_with_smoked_chicken.webp`}
-          dishName="Рамен з копченою куркою"
-          ingredients="Бульйон з соусом нігоші, локшина, курка теріякі, водорості
-                    комбу, азіатський гриб, морква, зелена цибуля, мариноване
-                    яйце, кунжут"
-          price={250}
-          slug={"ramen_with_smoked_chicken"}
-        />
-        <DishCard
-          id="8fc5uq30ftc8uyqc8"
-          imagePath={`/static/dishes/ramen/ramen_curry_with_shrimp.webp`}
-          dishName="Рамен карі з креветками"
-          ingredients="Бульйон з соусом нігоші, локшина, курка теріякі, водорості
-                    комбу, азіатський гриб, морква, зелена цибуля, мариноване
-                    яйце, кунжут"
-          price={250}
-          slug={"ramen_curry_with_shrimp"}
-        />
-      </ul>
+      <h3 className="dishes-list__title">{categoryName}</h3>
+      <ul className="dishes-list">{dishesList}</ul>
       <HomeMoreDishesButton />
     </div>
   );
