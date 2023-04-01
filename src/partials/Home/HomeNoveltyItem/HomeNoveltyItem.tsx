@@ -1,19 +1,22 @@
+import { Link } from "react-router-dom";
+
 import "./HomeNoveltyItem.scss";
 
 type HomeNoveltyItemPropsType = {
   imagePath: string;
   name: string;
   price: number;
+  slug: string;
 };
 
 const HomeNoveltyItem = (props: HomeNoveltyItemPropsType): JSX.Element => {
-  const { imagePath, name, price } = props;
+  const { imagePath, name, price, slug } = props;
 
   return (
     <li className="novelty-item">
       <img className="novelty-item__img" src={imagePath} alt={""} />
       <div className="novelty-info">
-        <span>{name}</span>
+        <Link to={`/dish/${slug}`}>{name}</Link>
         <span>{price}грн</span>
       </div>
     </li>

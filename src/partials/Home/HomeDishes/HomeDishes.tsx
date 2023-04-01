@@ -1,12 +1,21 @@
 import HomeDishesRow from "../HomeDishesRow";
+import { DishT } from "../../../pages/Category/Category";
+
 import "./HomeDishes.scss";
 
-const HomeDishes = (): JSX.Element => {
+type HomeDishesPropsType = {
+  pizza: DishT[];
+  ramen: DishT[];
+};
+
+const HomeDishes = (props: HomeDishesPropsType): JSX.Element => {
+  const { pizza, ramen } = props;
+
   return (
     <section className="dishes">
       <div className="container">
-        <HomeDishesRow />
-        <HomeDishesRow />
+        <HomeDishesRow dishes={pizza} categoryName={"Піца"} />
+        <HomeDishesRow dishes={ramen} categoryName={"Рамен"} />
       </div>
     </section>
   );
