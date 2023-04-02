@@ -1,7 +1,15 @@
 import HomeEventsItem from "../HomeEventsItem";
+import { EventT } from "../../../pages/Home/Home";
+
 import "./HomeEvents.scss";
 
-const HomeEvents = (): JSX.Element => {
+const HomeEvents = (props: { events: EventT[] }): JSX.Element => {
+  const { events } = props;
+
+  const eventsList = events.map((event) => (
+    <HomeEventsItem imagePath={event.imagePath} />
+  ));
+
   return (
     <section className="events">
       <div className="container">
@@ -9,12 +17,7 @@ const HomeEvents = (): JSX.Element => {
           <span className="events-title__item">Наші</span>
           <span className="events-title__item">акції</span>
         </h3>
-        <ul className="events-list">
-          <HomeEventsItem imagePath="/img/event_01.jpg" />
-          <HomeEventsItem imagePath="/img/event_02.jpg" />
-          <HomeEventsItem imagePath="/img/event_03.png" />
-          <HomeEventsItem imagePath="/img/event_04.png" />
-        </ul>
+        <ul className="events-list">{eventsList}</ul>
         <div className="events-list-button-wrap">
           <button className="events-list-item__button">Всі акції</button>
         </div>

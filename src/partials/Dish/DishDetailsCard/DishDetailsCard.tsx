@@ -1,11 +1,13 @@
 import createIngredientsString from "../../../helpers/createIngredientsString";
 import { DishT } from "../../../pages/Category/Category";
+import { API_PORT, API_URL } from "../../../env";
+
 import "./DishDetailsCard.scss";
 
 const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
   const { dish } = props;
 
-  const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
+  const apiUrl = `${API_URL}:${API_PORT}`;
 
   const ingredientsString: string = dish?.ingredients.length
     ? createIngredientsString(dish?.ingredients)
