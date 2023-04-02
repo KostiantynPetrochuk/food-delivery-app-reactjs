@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import BasketButton from "./BasketButton";
 import HeaderInfo from "./HeaderInfo";
@@ -12,19 +13,30 @@ import "./Header.scss";
 
 const Header = (): JSX.Element => {
   const [mobMenuState, setMobMenuState] = useState<boolean>(false);
+  const [scroll, setScroll] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScroll(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const classes = `header ${scroll > 0 ? "header-fixed" : ""}`;
 
   return (
-    <header className="header">
+    <header className={classes}>
       <MobMenu mobMenuState={mobMenuState} setMobMenuState={setMobMenuState} />
       <div className="container">
         <div className="header-top">
           <div className="header-top-left">
             <div className="header-logo-inner">
-              <img
-                className="header-logo__img"
-                src={"/img/logo.jpg"}
-                alt={""}
-              />
+              <Link to={"/"}>
+                <img
+                  className="header-logo__img"
+                  src={"/img/logo.jpg"}
+                  alt={""}
+                />
+              </Link>
             </div>
             <HeaderInfo city={"Хмельницький"} deliveryTime={"30"} />
           </div>

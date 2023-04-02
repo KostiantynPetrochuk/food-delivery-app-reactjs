@@ -13,7 +13,7 @@ import { DishT } from "../Category/Category";
 
 import "./Home.scss";
 
-type EventT = {
+export type EventT = {
   _id: string;
   imagePath: string;
   title: string;
@@ -44,7 +44,7 @@ const Home = (): JSX.Element => {
       <BreadCrumbs />
       <HomeNovelty novelties={homePageData?.novelties} />
       <HomeDishes pizza={homePageData.pizza} ramen={homePageData.ramen} />
-      <HomeEvents />
+      <HomeEvents events={homePageData.latestEvents} />
       <HomeInfo />
     </main>
   ) : (

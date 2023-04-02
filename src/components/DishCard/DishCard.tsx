@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import { API_PORT, API_URL } from "../../env";
+
 import "./DishCard.scss";
 
 type DishCardPropsType = {
@@ -13,7 +15,7 @@ type DishCardPropsType = {
 
 const DishCard = (props: DishCardPropsType): JSX.Element => {
   const { imagePath, dishName, ingredients, price, slug } = props;
-  const apiUrl = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}`;
+  const apiUrl = `${API_URL}:${API_PORT}`;
 
   return (
     <li className="dishes-list-item">

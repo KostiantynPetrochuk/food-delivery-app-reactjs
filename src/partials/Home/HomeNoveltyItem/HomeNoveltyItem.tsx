@@ -16,7 +16,9 @@ const HomeNoveltyItem = (props: HomeNoveltyItemPropsType): JSX.Element => {
     <li className="novelty-item">
       <img className="novelty-item__img" src={imagePath} alt={""} />
       <div className="novelty-info">
-        <Link to={`/dish/${slug}`}>{name}</Link>
+        <Link to={`/dish/${slug}`} className="novelty-link">
+          {name}
+        </Link>
         <span>{price}грн</span>
       </div>
     </li>
