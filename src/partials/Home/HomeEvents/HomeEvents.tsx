@@ -7,7 +7,7 @@ const HomeEvents = (props: { events: EventT[] }): JSX.Element => {
   const { events } = props;
 
   const eventsList = events.map((event) => (
-    <HomeEventsItem imagePath={event.imagePath} />
+    <HomeEventsItem key={event._id} imagePath={event.imagePath} />
   ));
 
   return (

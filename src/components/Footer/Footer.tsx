@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 import FooterSocials from "./FooterSocials";
 import OrderPhone from "../Header/OrderPhone";
 import OrderCallButton from "../Header/OrderCallButton";
+
 import "./Footer.scss";
 
 const Footer = (): JSX.Element => {
@@ -10,7 +13,10 @@ const Footer = (): JSX.Element => {
         <div className="footer-inner">
           <div className="footer-top">
             <div className="footer-top-left">
-              <img className="footer__logo" src={"/img/logo.jpg"} alt={""} />
+              <Link to={"/"}>
+                <img className="footer__logo" src={"/img/logo.jpg"} alt={""} />
+              </Link>
+
               <OrderPhone
                 addClassName={"footer__phone"}
                 phone={"044 65 98 658"}
