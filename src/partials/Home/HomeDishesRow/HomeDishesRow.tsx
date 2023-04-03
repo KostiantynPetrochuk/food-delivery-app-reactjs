@@ -8,8 +8,9 @@ import "./HomeDishesRow.scss";
 const HomeDishesRow = (props: {
   dishes: DishT[];
   categoryName: string;
+  slug: string;
 }): JSX.Element => {
-  const { dishes, categoryName } = props;
+  const { dishes, categoryName, slug } = props;
 
   const dishesList = dishes.map(
     ({ _id, imagePath, name, price, slug, ingredients }) => {
@@ -33,7 +34,7 @@ const HomeDishesRow = (props: {
     <div className="dishes-row">
       <h3 className="dishes-list__title">{categoryName}</h3>
       <ul className="dishes-list">{dishesList}</ul>
-      <HomeMoreDishesButton />
+      <HomeMoreDishesButton slug={slug} />
     </div>
   );
 };

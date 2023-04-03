@@ -1,9 +1,15 @@
+import { Link } from "react-router-dom";
+
 import "./HomeMoreDishesButton.scss";
 
-const HomeMoreDishesButton = (): JSX.Element => {
+const HomeMoreDishesButton = (props: { slug: string }): JSX.Element => {
+  const { slug } = props;
+
   return (
     <div className="dishes-list-button-inner">
-      <button className="dishes-list__button">Переглянути всі</button>
+      <Link to={`/category/${slug}`} className="dishes-list__button">
+        Переглянути всі
+      </Link>
     </div>
   );
 };

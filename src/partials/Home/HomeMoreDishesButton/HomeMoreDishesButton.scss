@@ -13,6 +13,11 @@
     color: #f7d22d;
     cursor: pointer;
     transition: 0.35s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
     &:hover {
       color: #fff;
       background-color: #f7d22d;
