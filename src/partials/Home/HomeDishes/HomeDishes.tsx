@@ -14,8 +14,8 @@ const HomeDishes = (props: HomeDishesPropsType): JSX.Element => {
   return (
     <section className="dishes">
       <div className="container">
-        <HomeDishesRow dishes={pizza} categoryName={"Піца"} />
-        <HomeDishesRow dishes={ramen} categoryName={"Рамен"} />
+        <HomeDishesRow dishes={pizza} categoryName={"Піца"} slug={"pizza"} />
+        <HomeDishesRow dishes={ramen} categoryName={"Рамен"} slug={"ramen"} />
       </div>
     </section>
   );

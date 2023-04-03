@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./HeaderMob.scss";
 
 type HeaderMobPropsType = {
@@ -15,7 +17,9 @@ const HeaderMob = (props: HeaderMobPropsType): JSX.Element => {
   return (
     <div className="header-mob">
       <div className="header-logo-inner">
-        <img className="header-logo__img" src={"/img/logo.jpg"} alt={""} />
+        <Link to={"/"}>
+          <img className="header-logo__img" src={"/img/logo.jpg"} alt={""} />
+        </Link>
       </div>
       <div
         className={`mob-menu__btn ${mobMenuState ? " visible" : ""}`}
