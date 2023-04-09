@@ -1,20 +1,38 @@
 import { Link } from "react-router-dom";
 
 import { API_PORT, API_URL } from "../../env";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { addCustom } from "../../store/customSlice";
+
+import createIngredientsString from "../../helpers/createIngredientsString";
 
 import "./DishCard.scss";
+import { DishT } from "../../pages/Category/Category";
 
-type DishCardPropsType = {
-  id: string;
-  imagePath: string;
-  dishName: string;
-  ingredients: string;
-  price: number;
-  slug: string;
-};
+const DishCard = (props: { dish: DishT }): JSX.Element => {
+  const { dish } = props;
+  const { _id, imagePath, name, price, slug } = dish;
+  const dispatch = useAppDispatch();
+  const customsList = useAppSelector((state) => state.customs.list);
+  const isDishInBasket = customsList.find((custom) => custom._id === _id);
 
-const DishCard = (props: DishCardPropsType): JSX.Element => {
-  const { imagePath, dishName, ingredients, price, slug } = props;
+  const ingredientsString = createIngredientsString(dish.ingredients);
+
+  const buttonClassName = `dishes-item__button${
+    isDishInBasket ? " _inBasket" : ""
+  }`;
+
+  const handleAddCustom = () => {
+    if (_id !== null) {
+      const currentCustom = {
+        _id,
+        dish: props.dish,
+        count: 1,
+      };
+      dispatch(addCustom(currentCustom));
+    }
+  };
+
   const apiUrl = `${API_URL}:${API_PORT}`;
 
   return (
@@ -26,12 +44,16 @@ const DishCard = (props: DishCardPropsType): JSX.Element => {
       />
       <div className="dishes-list-item-body">
         <Link to={`/dish/${slug}`} className="dishes-list-item-body__title">
-          {dishName}
+          {name}
         </Link>
-        <span className="dishes-list-item-ingredients">{ingredients}</span>
+        <span className="dishes-list-item-ingredients">
+          {ingredientsString}
+        </span>
         <div className="dishes-list-item-bot">
           <span className="dishes-list-item__price">{price}грн</span>
-          <button className="dishes-item__button">В кошик</button>
+          <button className={buttonClassName} onClick={handleAddCustom}>
+            {isDishInBasket ? `В кошику x${isDishInBasket.count}` : "В кошик"}
+          </button>
         </div>
       </div>
     </li>
