@@ -1,3 +1,5 @@
+import { API_PORT, API_URL } from "../../../env";
+
 import "./BasketButtonDropdownItem.scss";
 
 type BasketButtonDropdownItemPropTypes = {
@@ -7,6 +9,8 @@ type BasketButtonDropdownItemPropTypes = {
   price: number;
 };
 
+const apiUrl = `${API_URL}:${API_PORT}`;
+
 const BasketButtonDropdownItem = (
   props: BasketButtonDropdownItemPropTypes
 ): JSX.Element => {
@@ -15,7 +19,11 @@ const BasketButtonDropdownItem = (
   return (
     <li className="header-bot-basket-dropdown-list-item">
       <div className="header-bot-basket-left">
-        <img className="header-bot-basket__img" src={imagePath} alt={""} />
+        <img
+          className="header-bot-basket__img"
+          src={`${apiUrl}${imagePath}`}
+          alt={""}
+        />
       </div>
       <div className="header-bot-basket-middle">
         <span className="header-bot-basket__dish">{dishName}</span>

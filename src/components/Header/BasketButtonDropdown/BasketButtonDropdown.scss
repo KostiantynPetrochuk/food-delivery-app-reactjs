@@ -7,7 +7,7 @@
   border: 2px solid #ffdc40;
   border-radius: 10px;
   cursor: default;
-  padding: 0 24px;
+  padding: 0 14px 0 24px;
   box-shadow: 0 0 10px 1px #949494;
   transform: translateY(-50px);
   opacity: 0;
@@ -23,6 +23,7 @@
     transform: rotate(45deg);
     position: absolute;
     right: 20px;
+    z-index: 1;
   }
 
   &::after {
@@ -37,14 +38,37 @@
 
   &-list {
     list-style: none;
-    padding: 0;
+    padding: 0 10px 0 0;
     margin: 0;
+    max-height: 320px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
   }
-
 }
 
 .header-bot-basket__button:hover .header-bot-basket-dropdown {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
+}
+
+.header-bot-basket-dropdown-list {
+  padding-right: 10px;
+  overflow-y: auto;
+}
+
+.header-bot-basket-dropdown-list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+.header-bot-basket-dropdown-list::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+.header-bot-basket-amount__info {
+  width: 100%;
 }

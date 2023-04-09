@@ -16,7 +16,9 @@ const DishCard = (props: { dish: DishT }): JSX.Element => {
   const customsList = useAppSelector((state) => state.customs.list);
   const isDishInBasket = customsList.find((custom) => custom._id === _id);
 
-  const ingredientsString = createIngredientsString(dish.ingredients);
+  const ingredientsString = dish.ingredients.length
+    ? createIngredientsString(dish.ingredients)
+    : "";
 
   const buttonClassName = `dishes-item__button${
     isDishInBasket ? " _inBasket" : ""
