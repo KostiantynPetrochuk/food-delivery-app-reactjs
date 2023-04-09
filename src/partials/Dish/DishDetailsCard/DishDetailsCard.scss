@@ -45,6 +45,11 @@
       color: #696f7a;
       border-radius: 8px;
       margin-top: 5px;
+
+      &._inBasket {
+        pointer-events: none;
+        opacity: 0;
+      }
     }
 
     &__remove,
@@ -76,9 +81,16 @@
       cursor: pointer;
       border-radius: 8px;
       font-weight: bold;
+
+      &._inBasket {
+        background-color: #f3f3f7;
+        pointer-events: none;
+      }
+
       @media screen and (max-width: 600px) {
         width: 320px;
       }
+
       @media screen and (max-width: 400px) {
         width: 260px;
       }

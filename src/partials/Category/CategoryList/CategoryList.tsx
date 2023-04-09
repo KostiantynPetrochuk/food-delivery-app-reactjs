@@ -1,6 +1,5 @@
 import DishCard from "../../../components/DishCard";
 import { DishT } from "../../../pages/Category/Category";
-import createIngredientsString from "../../../helpers/createIngredientsString";
 
 import "./CategoryList.scss";
 
@@ -8,25 +7,9 @@ const CategoryList = (props: { dishes: DishT[] }): JSX.Element => {
   const { dishes } = props;
   const categoryName: string = dishes[0]?.dishCategory.name;
 
-  const content: JSX.Element[] = dishes.map((dish: DishT) => {
-    const { _id, imagePath, name, ingredients, price, slug } = dish;
-
-    const ingredientsString: string = ingredients.length
-      ? createIngredientsString(ingredients)
-      : "";
-
-    return (
-      <DishCard
-        key={_id}
-        id={_id}
-        imagePath={imagePath}
-        dishName={name}
-        ingredients={ingredientsString}
-        price={price}
-        slug={slug}
-      />
-    );
-  });
+  const content: JSX.Element[] = dishes.map((dish: DishT) => (
+    <DishCard key={dish._id} dish={dish} />
+  ));
 
   return (
     <section className="category">
