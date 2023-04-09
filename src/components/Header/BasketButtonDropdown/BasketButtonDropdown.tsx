@@ -1,32 +1,37 @@
 import BasketButtonDropdownItem from "../BasketButtonDropdownItem";
+import { useAppSelector } from "../../../hooks";
+
 import "./BasketButtonDropdown.scss";
 
 const BasketButtonDropdown = (): JSX.Element => {
+  const customsList = useAppSelector((state) => state.customs.list);
+
+  const orderAmount = customsList.reduce((a, b) => {
+    const currentItemPrice = b.count * b.dish.price;
+    return a + currentItemPrice;
+  }, 0);
+
+  const basketList = customsList.map((custom) => (
+    <BasketButtonDropdownItem
+      imagePath={custom.dish.imagePath}
+      dishName={custom.dish.name}
+      count={custom.count}
+      price={custom.dish.price * custom.count}
+    />
+  ));
+
   return (
     <div className="header-bot-basket-dropdown">
-      <ul className="header-bot-basket-dropdown-list">
-        <BasketButtonDropdownItem
-          imagePath={"/img/pizza/cornelia.png"}
-          dishName={"Корнелія"}
-          count={1}
-          price={155}
-        />
-        <BasketButtonDropdownItem
-          imagePath={"/img/ramen/ramen_with_shredded_beef.png"}
-          dishName={"Рамен Нігоші з куркою теріякі"}
-          count={1}
-          price={155}
-        />
-        <BasketButtonDropdownItem
-          imagePath={"/img/rolls/philadelphia_with_tuna.png"}
-          dishName={"Філадельфія з тунцем"}
-          count={1}
-          price={155}
-        />
-      </ul>
+      <ul className="header-bot-basket-dropdown-list">{basketList}</ul>
       <div className="header-bot-basket-amount">
-        <span>Сума замовлення</span>
-        <span>550грн</span>
+        {customsList.length ? (
+          <>
+            <span>Сума замовлення</span>
+            <span>{orderAmount} грн</span>
+          </>
+        ) : (
+          <span className="header-bot-basket-amount__info">Кошик пустий</span>
+        )}
       </div>
     </div>
   );
