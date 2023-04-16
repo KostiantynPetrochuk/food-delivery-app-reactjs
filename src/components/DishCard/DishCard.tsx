@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { API_PORT, API_URL } from "../../env";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addCustom } from "../../store/customSlice";
-
+import { DishT } from "../../pages/Category/Category";
 import createIngredientsString from "../../helpers/createIngredientsString";
 
 import "./DishCard.scss";
-import { DishT } from "../../pages/Category/Category";
+
 
 const DishCard = (props: { dish: DishT }): JSX.Element => {
   const { dish } = props;
@@ -54,7 +54,7 @@ const DishCard = (props: { dish: DishT }): JSX.Element => {
         <div className="dishes-list-item-bot">
           <span className="dishes-list-item__price">{price}грн</span>
           <button className={buttonClassName} onClick={handleAddCustom}>
-            {isDishInBasket ? `В кошику x${isDishInBasket.count}` : "В кошик"}
+            {isDishInBasket ? `В кошику` : "В кошик"}
           </button>
         </div>
       </div>

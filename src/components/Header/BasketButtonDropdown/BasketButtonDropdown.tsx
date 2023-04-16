@@ -13,6 +13,8 @@ const BasketButtonDropdown = (): JSX.Element => {
 
   const basketList = customsList.map((custom) => (
     <BasketButtonDropdownItem
+      key={custom._id}
+      _id={custom._id}
       imagePath={custom.dish.imagePath}
       dishName={custom.dish.name}
       count={custom.count}
