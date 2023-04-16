@@ -16,30 +16,48 @@ const initialState: CustomsState = {
   list: [],
 };
 
+type ChangeCountActionT = {
+  _id: string;
+  updatedCount: number;
+};
+
+type RemoveCustomActionT = {
+  _id: string;
+};
+
 const customSlice = createSlice({
   name: "customs",
   initialState,
   reducers: {
     addCustom(state, action: PayloadAction<Custom>) {
-      //string заміняємо на потрібний тип
       if (action !== undefined) {
         state.list.push(action.payload);
       }
     },
-    //---
-    // changeCount(state, action: PayloadAction<string>) {
-    //   const changedCustom = state.customs.find(
-    //     (custom) => custom._id === action.payload
-    //   );
-    //   changedCustom.completed = !changedCustom.completed;
-    // },
-    //---
-    removeCustom(state, action: PayloadAction<string>) {
-      state.list = state.list.filter((custom) => custom._id !== action.payload);
+    changeCount(state, action: PayloadAction<ChangeCountActionT>) {
+      if (action.payload.updatedCount <= 0) {
+        state.list = state.list.filter(
+          (custom) => custom._id !== action.payload._id
+        );
+        return;
+      }
+
+      const changedCustom = state.list.find(
+        (custom) => custom._id === action.payload._id
+      );
+
+      if (changedCustom) {
+        changedCustom.count = action.payload.updatedCount;
+      }
+    },
+    removeCustom(state, action: PayloadAction<RemoveCustomActionT>) {
+      state.list = state.list.filter(
+        (custom) => custom._id !== action.payload._id
+      );
     },
   },
 });
 
-export const { addCustom, removeCustom } = customSlice.actions;
+export const { addCustom, changeCount, removeCustom } = customSlice.actions;
 
 export default customSlice.reducer;

@@ -31,7 +31,7 @@ const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
   };
 
   const handleRemoveDish = () => {
-    if (!dishCount) return;
+    if (dishCount <= 1) return;
     setDishCount(dishCount - 1);
   };
 
