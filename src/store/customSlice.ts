@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { DishT } from "../pages/Category/Category";
 
-type Custom = {
+export type Custom = {
   _id: string;
   dish: DishT;
   count: number;

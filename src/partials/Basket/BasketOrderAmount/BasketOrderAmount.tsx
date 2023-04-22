@@ -1,10 +1,6 @@
 import "./BasketOrderAmount.scss";
 
-type BasketOrderAmountPropsType = {
-  amount: number;
-};
-
-const BasketOrderAmount = (props: BasketOrderAmountPropsType): JSX.Element => {
+const BasketOrderAmount = (props: { amount: number }) => {
   const { amount } = props;
 
   return (

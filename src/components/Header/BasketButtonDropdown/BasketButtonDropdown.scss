@@ -1,6 +1,6 @@
 .header-bot-basket-dropdown {
   position: absolute;
-  top: 130%;
+  top: 99%;
   right: 0;
   background-color: #ffffff;
   width: 340px;
@@ -47,7 +47,7 @@
   }
 }
 
-.header-bot-basket__button:hover .header-bot-basket-dropdown {
+.header-bot-basket-button-inner:hover .header-bot-basket-dropdown {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
