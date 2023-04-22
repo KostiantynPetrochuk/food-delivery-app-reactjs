@@ -1,37 +1,32 @@
 import { BasketCustom } from "..";
+import { Custom } from "../../../store/customSlice";
 
-const BasketCustoms = (): JSX.Element => {
-  return (
-    <ul className="basket-customs">
+import createIngredientsString from "../../../helpers/createIngredientsString";
+
+const BasketCustoms = (props: { customsList: Custom[] }) => {
+  const { customsList } = props;
+
+  const basketCustoms = customsList.map((basketCustom) => {
+    const { dish } = basketCustom;
+
+    const ingredientsString = dish.ingredients.length
+      ? createIngredientsString(dish.ingredients)
+      : "";
+
+    return (
       <BasketCustom
-        imagePath={"/img/pizza/pepperoni.png"}
-        name={"Пепероні"}
-        price={250}
-        count={3}
-        ingredients={
-          "Пепероні, сир моцарела, гриби, томатний соус, цибуля, перець халапеньо, часник, маринований огірок"
-        }
+        key={basketCustom._id}
+        _id={basketCustom._id}
+        imagePath={dish.imagePath}
+        name={dish.name}
+        price={dish.price}
+        count={basketCustom.count}
+        ingredients={ingredientsString}
       />
-      <BasketCustom
-        imagePath={"/img/pizza/pepperoni.png"}
-        name={"Пепероні"}
-        price={250}
-        count={3}
-        ingredients={
-          "Пепероні, сир моцарела, гриби, томатний соус, цибуля, перець халапеньо, часник, маринований огірок"
-        }
-      />
-      <BasketCustom
-        imagePath={"/img/pizza/pepperoni.png"}
-        name={"Пепероні"}
-        price={250}
-        count={3}
-        ingredients={
-          "Пепероні, сир моцарела, гриби, томатний соус, цибуля, перець халапеньо, часник, маринований огірок"
-        }
-      />
-    </ul>
-  );
+    );
+  });
+
+  return <ul className="basket-customs">{basketCustoms}</ul>;
 };
 
 export default BasketCustoms;
