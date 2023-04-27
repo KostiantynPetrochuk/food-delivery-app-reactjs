@@ -20,6 +20,11 @@ const Basket = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const customsList = useAppSelector((state) => state.customs.list);
 
+  const orderAmount = customsList.reduce((a, b) => {
+    const currentItemPrice = b.count * b.dish.price;
+    return a + currentItemPrice;
+  }, 0);
+
   useEffect(() => {
     getDishesByCategorySlug("sauces")
       .then((data) => {
@@ -37,8 +42,12 @@ const Basket = () => {
           <div className="basket-inner">
             <OrderingSteps />
             <BasketCustoms customsList={customsList} />
-            {loading ? <Spinner /> : <BasketSauces sauces={sauces} />}
-            <BasketOrderAmount amount={1500} />
+            {loading ? (
+              <Spinner />
+            ) : (
+              <BasketSauces sauces={sauces} customsList={customsList} />
+            )}
+            <BasketOrderAmount amount={orderAmount} />
             <OrderingButtons />
           </div>
         </div>

@@ -3,6 +3,8 @@ import { Custom } from "../../../store/customSlice";
 
 import createIngredientsString from "../../../helpers/createIngredientsString";
 
+import "./BasketCustoms.scss";
+
 const BasketCustoms = (props: { customsList: Custom[] }) => {
   const { customsList } = props;
 

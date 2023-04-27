@@ -1,17 +1,18 @@
 import { DishT } from "../../../pages/Category/Category";
-import BasketSauce from "../BasketSauce/BasketSauce";
+import { Custom } from "../../../store/customSlice";
+import BasketSauce from "../BasketSauce";
 
 import "./BasketSauces.scss";
 
-const BasketSauces = (props: { sauces: DishT[] }) => {
-  const { sauces } = props;
+const BasketSauces = (props: { sauces: DishT[]; customsList: Custom[] }) => {
+  const { sauces, customsList } = props;
 
   const basketSauceslist = sauces.map((sauce) => (
     <BasketSauce
       key={sauce._id}
-      imagePath={sauce.imagePath}
-      name={sauce.name}
-      price={sauce.price}
+      _id={sauce._id}
+      sauce={sauce}
+      customsList={customsList}
     />
   ));
 
