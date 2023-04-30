@@ -1,52 +1,71 @@
 import { OrderingDeliveryCheckbox, OrderingInput } from "..";
+import OrderingPayment from "../OrderingPayment/OrderingPayment";
+import { OrderingFormPropsT } from "./OrderingFormPropsT";
 
 import "./OrderingForm.scss";
 
-const OrderingForm = (): JSX.Element => {
+const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    surrName,
+    setSurrName,
+    phone,
+    setPhone,
+    delivery,
+    setDelivery,
+    address,
+    setAddress,
+    deliveryTime,
+    setDeliveryTime,
+    paymentMethod,
+    setPaymentMethod,
+  } = props;
   return (
     <form className="basket-ordering-form">
-      <OrderingInput inputName="Прізвище" inputClassName="firstname" />
-      <OrderingInput inputName="Ім'я" inputClassName="lastname" />
-      <OrderingInput inputName="По батькові" inputClassName="surrname" />
-      <OrderingInput inputName="Телефон" inputClassName="phone" />
-      <OrderingDeliveryCheckbox />
-      <OrderingInput inputName="Адреса доставки" inputClassName="address" />
-      <OrderingInput inputName="Час доставки" inputClassName="time" />
-      <div className="basket-ordering-payment">
-        <span className="basket-ordering-payment__title">Спосіб оплати</span>
-        <label className="basket-ordering-payment-item">
-          <input
-            className="basket-ordering-payment-real-radio"
-            type="radio"
-            name="payment"
-            id=""
-          />
-          <span className="basket-ordering-payment-fake-radio"></span>
-          <img
-            className="basket-ordering-payment__logo"
-            src="img/credit-card.svg"
-            alt=""
-          />
-          <span className="basket-ordering-payment-item__subtitle">Картка</span>
-        </label>
-        <label className="basket-ordering-payment-item">
-          <input
-            className="basket-ordering-payment-real-radio"
-            type="radio"
-            name="payment"
-            id=""
-          />
-          <span className="basket-ordering-payment-fake-radio"></span>
-          <img
-            className="basket-ordering-payment__logo"
-            src="img/cash.svg"
-            alt=""
-          />
-          <span className="basket-ordering-payment-item__subtitle">
-            Готівка
-          </span>
-        </label>
-      </div>
+      <OrderingInput
+        inputName="Прізвище"
+        inputClassName="firstname"
+        value={firstName}
+        setValue={setFirstName}
+      />
+      <OrderingInput
+        inputName="Ім'я"
+        inputClassName="lastname"
+        value={lastName}
+        setValue={setLastName}
+      />
+      <OrderingInput
+        inputName="По батькові"
+        inputClassName="surrname"
+        value={surrName}
+        setValue={setSurrName}
+      />
+      <OrderingInput
+        inputName="Телефон"
+        inputClassName="phone"
+        value={phone}
+        setValue={setPhone}
+      />
+      <OrderingDeliveryCheckbox delivery={delivery} setDelivery={setDelivery} />
+      <OrderingInput
+        inputName="Адреса доставки"
+        inputClassName="address"
+        value={address}
+        setValue={setAddress}
+      />
+      <OrderingInput
+        inputName="Час доставки"
+        inputClassName="time"
+        value={deliveryTime}
+        setValue={setDeliveryTime}
+      />
+      <OrderingPayment
+        paymentMethod={paymentMethod}
+        setPaymentMethod={setPaymentMethod}
+      />
     </form>
   );
 };

@@ -3,11 +3,20 @@ import OrderingPrevButton from "../OrderingPrevButton";
 
 import "./OrderingButtons.scss";
 
-const OrderingButtons = (): JSX.Element => {
+type OrderingButtonsT = {
+  handleSubmitOrder: (() => void) | null;
+  nextBtnType: string | null;
+};
+
+const OrderingButtons = (props: OrderingButtonsT): JSX.Element => {
+  const { handleSubmitOrder, nextBtnType } = props;
   return (
     <div className="basket-buttons">
       <OrderingPrevButton />
-      <OrderingNextButton />
+      <OrderingNextButton
+        handleSubmitOrder={handleSubmitOrder}
+        nextBtnType={nextBtnType}
+      />
     </div>
   );
 };

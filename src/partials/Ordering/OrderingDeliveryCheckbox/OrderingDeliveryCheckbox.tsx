@@ -1,6 +1,19 @@
 import "./OrderingDeliveryCheckbox.scss";
 
-const OrderingDeliveryCheckbox = (): JSX.Element => {
+type OrderingDeliveryCheckboxProps = {
+  delivery: boolean;
+  setDelivery: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const OrderingDeliveryCheckbox = (
+  props: OrderingDeliveryCheckboxProps
+): JSX.Element => {
+  const { delivery, setDelivery } = props;
+
+  const handleChangeDelivery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDelivery(event.target.checked);
+  };
+
   return (
     <label className="basket-ordering-delivery">
       <span className="basket-ordering-input__name">Доставка</span>
@@ -9,6 +22,8 @@ const OrderingDeliveryCheckbox = (): JSX.Element => {
         type="checkbox"
         name=""
         id=""
+        checked={delivery}
+        onChange={handleChangeDelivery}
       />
       <span className="basket-ordering-delivery-fake-checkbox"></span>
     </label>

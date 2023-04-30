@@ -19,7 +19,9 @@ const OrderingCompositionItem = (
       <span className="basket-ordering-composition-list-item__price">
         {price}грн
       </span>
-      <span className="basket-ordering-composition-list-item__count">х2</span>
+      <span className="basket-ordering-composition-list-item__count">
+        х{count}
+      </span>
       <span className="basket-ordering-composition-list-item__total-price">
         {price * count}грн
       </span>

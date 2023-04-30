@@ -28,7 +28,7 @@
     & span:nth-child(1) {
       transform: rotate(-45deg);
       position: absolute;
-      top: 24px;
+      top: 25px;
 
       @media screen and (max-width: 600px) {
         top: 5px;
@@ -38,7 +38,7 @@
     & span:nth-child(2) {
       transform: rotate(45deg);
       position: absolute;
-      bottom: 24px;
+      bottom: 25px;
 
       @media screen and (max-width: 600px) {
         bottom: 5px;

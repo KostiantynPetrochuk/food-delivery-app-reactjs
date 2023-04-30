@@ -8,6 +8,11 @@
   font-weight: bold;
   position: relative;
   padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #000000;
 
   &-arrow {
     width: 20px;
@@ -24,17 +29,15 @@
     & span:nth-child(1) {
       transform: rotate(45deg);
       position: absolute;
-      top: 23px;
-
-      @media screen and (max-width: 600px) {
-        top: 24px;
-      }
+      top: 24px;
+      right: 25px;
     }
 
     & span:nth-child(2) {
       transform: rotate(-45deg);
       position: absolute;
-      bottom: 23px;
+      bottom: 24px;
+      right: 25px;
     }
   }
 }

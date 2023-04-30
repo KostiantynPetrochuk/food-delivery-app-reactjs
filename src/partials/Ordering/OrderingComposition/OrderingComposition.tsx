@@ -1,31 +1,37 @@
 import { OrderingCompositionItem } from "..";
+import { Custom } from "../../../store/customSlice";
 
 import "./OrderingComposition.scss";
 
-const OrderingComposition = (): JSX.Element => {
+const OrderingComposition = (props: { customsList: Custom[] }): JSX.Element => {
+  const { customsList } = props;
+
+  const orderAmount = customsList.reduce((a, b) => {
+    const currentItemPrice = b.count * b.dish.price;
+    return a + currentItemPrice;
+  }, 0);
+
+  const orderingCompositionItems = customsList.map((custom) => (
+    <OrderingCompositionItem
+      key={custom._id}
+      name={custom.dish.name}
+      price={custom.dish.price}
+      count={custom.count}
+    />
+  ));
+
   return (
     <div className="basket-ordering-composition">
       <h3 className="basket-ordering-composition__title">Склад замовлення</h3>
       <ul className="basket-ordering-composition-list">
-        <OrderingCompositionItem name="Пепероні" price={250} count={2} />
-        <OrderingCompositionItem
-          name="Рамен Шою з морепродуктами"
-          price={250}
-          count={2}
-        />
-        <OrderingCompositionItem name="Пепероні" price={250} count={2} />
-        <OrderingCompositionItem
-          name="Рамен Шою з морепродуктами"
-          price={250}
-          count={2}
-        />
+        {orderingCompositionItems}
       </ul>
       <div className="basket-ordering-composition-total">
         <span className="basket-ordering-composition-total__title">
           Сума замовлення
         </span>
         <span className="basket-ordering-composition-total__amount">
-          2000грн
+          {orderAmount}грн
         </span>
       </div>
     </div>
