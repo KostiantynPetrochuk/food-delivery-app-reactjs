@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import BreadCrumbs from "../../components/BreadCrumbs";
 import OrderingButtons from "../../components/OrderingButtons";
 import OrderingSteps from "../../components/OrderingSteps";
+import Spinner from "../../components/Spinner/Spinner";
 import { OrderingComposition, OrderingForm } from "../../partials/Ordering";
 import { useAppSelector } from "../../hooks";
-import { Custom } from "../../store/customSlice";
+import { Custom, clearBasket } from "../../store/customSlice";
+import { API_PORT, API_URL } from "../../env";
+import { useAppDispatch } from "../../hooks";
 
 import "./Ordering.scss";
 
 const Ordering = (): JSX.Element => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [surrName, setSurrName] = useState<string>("");
@@ -18,24 +24,78 @@ const Ordering = (): JSX.Element => {
   const [address, setAddress] = useState<string>("");
   const [deliveryTime, setDeliveryTime] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<boolean>(false);
+  const [orderId, setOrderId] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const customsList: Custom[] = useAppSelector((state) => state.customs.list);
 
-  const handleSubmitOrder = (): void => {
-    const newOrder = {
+  const handleSubmitOrder = async (): Promise<void> => {
+    setLoading(true);
+    const dto = {
       firstName,
       lastName,
       surrName,
-      phone,
+      phone: Number(phone),
       delivery,
       address,
       paymentMethod,
       deliveryTime,
+      status: false,
     };
-    console.log("new Order", newOrder);
+
+    const apiUrl: string = `${API_URL}:${API_PORT}`;
+
+    const queryString: string = `${apiUrl}/api/order/create`;
+
+    const res: Response = await fetch(queryString, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dto),
+    });
+
+    const createdOrder = await res.json();
+
+    setOrderId(createdOrder._id);
   };
 
-  return (
+  useEffect(() => {
+    const saveCustoms = async () => {
+      const apiUrl: string = `${API_URL}:${API_PORT}`;
+
+      const dtos = customsList.map((custom) => ({
+        dish: custom._id,
+        order: orderId,
+        count: custom.count,
+      }));
+
+      const queryString: string = `${apiUrl}/api/custom/createMany`;
+
+      const res: Response = await fetch(queryString, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dtos),
+      });
+
+      const result = await res.json();
+      if (result) {
+        navigate("/confirmed");
+      }
+
+      dispatch(clearBasket());
+    };
+
+    if (orderId) {
+      saveCustoms();
+    }
+  }, [orderId, customsList, dispatch, navigate]);
+
+  return loading ? (
+    <Spinner />
+  ) : (
     <main className="main">
       <BreadCrumbs />
       <section className="basket">

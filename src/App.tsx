@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Basket from "./pages/Basket/Basket";
 import Ordering from "./pages/Ordering/Ordering";
+import Confirmed from "./pages/Confirmed";
 
 import "./normalize.css";
 import "./App.css";
@@ -22,6 +23,7 @@ const App = (): JSX.Element => {
         <Route path="/dish/:slug" element={<Dish />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/ordering" element={<Ordering />} />
+        <Route path="/confirmed" element={<Confirmed />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

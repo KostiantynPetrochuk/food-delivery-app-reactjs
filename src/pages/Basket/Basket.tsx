@@ -9,7 +9,6 @@ import {
   BasketOrderAmount,
   BasketSauces,
 } from "../../partials/Basket";
-
 import { DishT } from "../Category/Category";
 
 import { useAppSelector } from "../../hooks";
@@ -34,7 +33,9 @@ const Basket = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <main className="main">
       <BreadCrumbs />
       <section className="basket">
@@ -42,11 +43,7 @@ const Basket = () => {
           <div className="basket-inner">
             <OrderingSteps />
             <BasketCustoms customsList={customsList} />
-            {loading ? (
-              <Spinner />
-            ) : (
-              <BasketSauces sauces={sauces} customsList={customsList} />
-            )}
+            <BasketSauces sauces={sauces} customsList={customsList} />
             <BasketOrderAmount amount={orderAmount} />
             <OrderingButtons handleSubmitOrder={null} nextBtnType={null} />
           </div>

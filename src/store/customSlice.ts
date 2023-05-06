@@ -55,9 +55,13 @@ const customSlice = createSlice({
         (custom) => custom._id !== action.payload._id
       );
     },
+    clearBasket(state) {
+      state.list = [];
+    },
   },
 });
 
-export const { addCustom, changeCount, removeCustom } = customSlice.actions;
+export const { addCustom, changeCount, removeCustom, clearBasket } =
+  customSlice.actions;
 
 export default customSlice.reducer;

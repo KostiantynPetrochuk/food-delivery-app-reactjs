@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import BasketButton from "./BasketButton";
@@ -13,18 +13,9 @@ import "./Header.scss";
 
 const Header = (): JSX.Element => {
   const [mobMenuState, setMobMenuState] = useState<boolean>(false);
-  const [scroll, setScroll] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScroll(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const classes = `header ${scroll > 0 ? "header-fixed" : ""}`;
 
   return (
-    <header className={classes}>
+    <header className="header">
       <MobMenu mobMenuState={mobMenuState} setMobMenuState={setMobMenuState} />
       <div className="container">
         <div className="header-top">
