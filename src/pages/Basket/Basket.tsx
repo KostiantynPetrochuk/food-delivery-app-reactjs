@@ -38,7 +38,12 @@ const Basket = () => {
     <Spinner />
   ) : (
     <main className="main">
-      <BreadCrumbs />
+      <BreadCrumbs
+        pathes={[
+          { path: "/", name: "Головна" },
+          { path: "/", name: "Кошик" },
+        ]}
+      />
       <section className="basket">
         <div className="container">
           <div className="basket-inner">

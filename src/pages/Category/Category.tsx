@@ -39,7 +39,12 @@ const Category = (): JSX.Element => {
 
   return (
     <main className="main">
-      <BreadCrumbs />
+      <BreadCrumbs
+        pathes={[
+          { path: "/", name: "Головна" },
+          { path: "/category/", name: dishes[0]?.dishCategory.name },
+        ]}
+      />
       {loading ? <Spinner /> : <CategoryList dishes={dishes} />}
     </main>
   );

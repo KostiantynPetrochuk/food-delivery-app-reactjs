@@ -101,7 +101,12 @@ const Ordering = (): JSX.Element => {
     <Spinner />
   ) : (
     <main className="main">
-      <BreadCrumbs />
+      <BreadCrumbs
+        pathes={[
+          { path: "/", name: "Головна" },
+          { path: "/", name: "Оформлення замовлення" },
+        ]}
+      />
       <section className="basket">
         <div className="container">
           <div className="basket-inner">

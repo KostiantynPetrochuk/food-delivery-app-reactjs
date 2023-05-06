@@ -1,20 +1,34 @@
+import { Link } from "react-router-dom";
 import "./BreadCrumbs.scss";
 
-const BreadCrumbs = (): JSX.Element => {
+type BreadCrumbPropItem = { path: string; name: string };
+
+const BreadCrumbs = (props: { pathes: BreadCrumbPropItem[] }): JSX.Element => {
+  const { pathes } = props;
+
+  const linksList = pathes.map((pathItem, index) => {
+    if (pathes.length - 1 === index) {
+      return (
+        <span key={index} className="bread-crumbs__last">
+          {pathItem.name}
+        </span>
+      );
+    }
+
+    return (
+      <>
+        <Link to={pathItem.path} className="bread-crumbs__title">
+          {pathItem.name}
+        </Link>
+        <span className="bread-crumbs__item"></span>
+      </>
+    );
+  });
+
   return (
     <section className="bread-crumbs">
       <div className="container">
-        <div className="bread-crumbs-inner">
-          <a href="#" className="bread-crumbs__title">
-            Головна
-          </a>
-          <span className="bread-crumbs__item"></span>
-          <a href="#" className="bread-crumbs__title">
-            Піца
-          </a>
-          <span className="bread-crumbs__item"></span>
-          <span className="bread-crumbs__last">Пепероні</span>
-        </div>
+        <div className="bread-crumbs-inner">{linksList}</div>
       </div>
     </section>
   );

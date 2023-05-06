@@ -41,7 +41,7 @@ const Home = (): JSX.Element => {
 
   return homePageData ? (
     <main className="main">
-      <BreadCrumbs />
+      <BreadCrumbs pathes={[{ path: "/", name: "Головна" }]} />
       <HomeNovelty novelties={homePageData?.novelties} />
       <HomeDishes pizza={homePageData.pizza} ramen={homePageData.ramen} />
       <HomeEvents events={homePageData.latestEvents} />
