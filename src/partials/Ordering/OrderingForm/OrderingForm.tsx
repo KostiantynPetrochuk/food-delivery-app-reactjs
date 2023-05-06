@@ -1,5 +1,6 @@
 import { OrderingDeliveryCheckbox, OrderingInput } from "..";
 import OrderingPayment from "../OrderingPayment/OrderingPayment";
+import OrderingInputNumber from "../OrderingInputNumber";
 import { OrderingFormPropsT } from "./OrderingFormPropsT";
 
 import "./OrderingForm.scss";
@@ -43,7 +44,7 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         value={surrName}
         setValue={setSurrName}
       />
-      <OrderingInput
+      <OrderingInputNumber
         inputName="Телефон"
         inputClassName="phone"
         value={phone}

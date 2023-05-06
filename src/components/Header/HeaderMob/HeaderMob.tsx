@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./HeaderMob.scss";
@@ -13,6 +14,15 @@ const HeaderMob = (props: HeaderMobPropsType): JSX.Element => {
   const handleMenuButtonClick = (): void => {
     mobMenuState ? setMobMenuState(false) : setMobMenuState(true);
   };
+
+  useEffect(() => {
+    const body = document.getElementsByTagName("body")[0];
+    if (mobMenuState) {
+      body.style.overflow = "hidden";
+      return;
+    }
+    body.style.overflow = "auto";
+  }, [mobMenuState]);
 
   return (
     <div className="header-mob">

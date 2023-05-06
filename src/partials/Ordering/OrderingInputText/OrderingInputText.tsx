@@ -5,7 +5,7 @@ type OrderingInputProps = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const OrderingInput = (props: OrderingInputProps): JSX.Element => {
+const OrderingInputText = (props: OrderingInputProps): JSX.Element => {
   const { inputName, inputClassName, value, setValue } = props;
   const labelClassName = `basket-ordering-${inputClassName}`;
 
@@ -22,9 +22,10 @@ const OrderingInput = (props: OrderingInputProps): JSX.Element => {
         id=""
         value={value}
         onChange={handleChangeValue}
+        placeholder={inputName}
       />
     </label>
   );
 };
 
-export default OrderingInput;
+export default OrderingInputText;

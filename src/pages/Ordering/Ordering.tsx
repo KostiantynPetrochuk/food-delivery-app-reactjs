@@ -25,7 +25,7 @@ const Ordering = (): JSX.Element => {
   const [deliveryTime, setDeliveryTime] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<boolean>(false);
   const [orderId, setOrderId] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const customsList: Custom[] = useAppSelector((state) => state.customs.list);
 
@@ -92,6 +92,10 @@ const Ordering = (): JSX.Element => {
       saveCustoms();
     }
   }, [orderId, customsList, dispatch, navigate]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   return loading ? (
     <Spinner />

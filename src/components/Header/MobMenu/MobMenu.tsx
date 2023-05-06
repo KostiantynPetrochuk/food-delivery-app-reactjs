@@ -2,6 +2,7 @@ import {
   DISH_CATEGORIES,
   DishCategory,
 } from "../../../constants/dishCategories";
+import HeaderMobButton from "../HeaderMobButton/HeaderMobButton";
 import HeaderMobLink from "../HeaderMobLink";
 
 import "./MobMenu.scss";
@@ -44,13 +45,7 @@ const MobMenu = (props: MobMenuPropsType): JSX.Element => {
         alt={""}
       />
       <ul className="header-mob-menu-list">{mobLinks}</ul>
-      <div className="mob-basket-btn-inner">
-        <span className="mob-basket__number">044 26 56 987</span>
-        <button className="mob-basket__btn">
-          <span className="mob-basket__info">Кошик</span>
-          <span className="mob-basket__count">3</span>
-        </button>
-      </div>
+      <HeaderMobButton handleMenuButtonClick={handleMenuButtonClick} />
     </div>
   );
 };
