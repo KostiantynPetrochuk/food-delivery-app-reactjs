@@ -4,6 +4,7 @@ import BreadCrumbs from "../../components/BreadCrumbs";
 import OrderingButtons from "../../components/OrderingButtons";
 import OrderingSteps from "../../components/OrderingSteps";
 import Spinner from "../../components/Spinner";
+import BasketMessage from "../../partials/Basket/BasketMessage/BasketMessage";
 import {
   BasketCustoms,
   BasketOrderAmount,
@@ -42,7 +43,11 @@ const Basket = () => {
         <div className="container">
           <div className="basket-inner">
             <OrderingSteps />
-            <BasketCustoms customsList={customsList} />
+            {orderAmount ? (
+              <BasketCustoms customsList={customsList} />
+            ) : (
+              <BasketMessage />
+            )}
             <BasketSauces sauces={sauces} customsList={customsList} />
             <BasketOrderAmount amount={orderAmount} />
             <OrderingButtons handleSubmitOrder={null} nextBtnType={null} />
