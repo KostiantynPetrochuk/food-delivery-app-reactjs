@@ -3,6 +3,28 @@
   padding-top: 10px;
   background-color: #fff;
 
+  &.header-fixed {
+    top: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    margin: 0 auto;
+    z-index: 2;
+    width: 100%;
+    animation: slideDown 0.5s forwards;
+    box-shadow: 0 0 10px 1px #949494;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(-60%);
+    }
+  }
+
   & .container {
     width: 100%;
     position: relative;
@@ -42,5 +64,10 @@
   .header-top,
   .header-bot {
     display: none;
+  }
+  @keyframes slideDown {
+    to {
+      transform: translateY(0);
+    }
   }
 }
