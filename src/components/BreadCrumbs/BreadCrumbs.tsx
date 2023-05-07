@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import "./BreadCrumbs.scss";
 
 type BreadCrumbPropItem = { path: string; name: string };
@@ -16,12 +17,12 @@ const BreadCrumbs = (props: { pathes: BreadCrumbPropItem[] }): JSX.Element => {
     }
 
     return (
-      <>
+      <span key={index}>
         <Link to={pathItem.path} className="bread-crumbs__title">
           {pathItem.name}
         </Link>
         <span className="bread-crumbs__item"></span>
-      </>
+      </span>
     );
   });
 

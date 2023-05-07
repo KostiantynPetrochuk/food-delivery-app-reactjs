@@ -110,7 +110,7 @@ const Ordering = (): JSX.Element => {
       <section className="basket">
         <div className="container">
           <div className="basket-inner">
-            <OrderingSteps />
+            <OrderingSteps index={2} />
             <div className="basket-ordering">
               <OrderingForm
                 firstName={firstName}

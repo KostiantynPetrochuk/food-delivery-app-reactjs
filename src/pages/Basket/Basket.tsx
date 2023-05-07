@@ -47,7 +47,7 @@ const Basket = () => {
       <section className="basket">
         <div className="container">
           <div className="basket-inner">
-            <OrderingSteps />
+            <OrderingSteps index={1} />
             {orderAmount ? (
               <BasketCustoms customsList={customsList} />
             ) : (
