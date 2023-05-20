@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 
 import { API_PORT, API_URL } from "../../env";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { addCustom } from "../../store/customSlice";
+import { addCustom, changeCount } from "../../store/customSlice";
 import { DishT } from "../../pages/Category/Category";
 import createIngredientsString from "../../helpers/createIngredientsString";
 
 import "./DishCard.scss";
-
 
 const DishCard = (props: { dish: DishT }): JSX.Element => {
   const { dish } = props;
@@ -20,10 +19,6 @@ const DishCard = (props: { dish: DishT }): JSX.Element => {
     ? createIngredientsString(dish.ingredients)
     : "";
 
-  const buttonClassName = `dishes-item__button${
-    isDishInBasket ? " _inBasket" : ""
-  }`;
-
   const handleAddCustom = () => {
     if (_id !== null) {
       const currentCustom = {
@@ -32,6 +27,18 @@ const DishCard = (props: { dish: DishT }): JSX.Element => {
         count: 1,
       };
       dispatch(addCustom(currentCustom));
+    }
+  };
+
+  const handleCountIncrement = () => {
+    if (isDishInBasket) {
+      dispatch(changeCount({ _id, updatedCount: isDishInBasket.count + 1 }));
+    }
+  };
+
+  const handleCountDecrement = () => {
+    if (isDishInBasket) {
+      dispatch(changeCount({ _id, updatedCount: isDishInBasket.count - 1 }));
     }
   };
 
@@ -53,9 +60,30 @@ const DishCard = (props: { dish: DishT }): JSX.Element => {
         </span>
         <div className="dishes-list-item-bot">
           <span className="dishes-list-item__price">{price}грн</span>
-          <button className={buttonClassName} onClick={handleAddCustom}>
-            {isDishInBasket ? `В кошику` : "В кошик"}
-          </button>
+
+          {isDishInBasket ? (
+            <div className="dishes-list-item-buttons">
+              <button
+                className="dishes-list-item__button"
+                onClick={handleCountDecrement}
+              >
+                -
+              </button>
+              <span className="dishes-list-item-buttons__count">
+                {isDishInBasket.count}
+              </span>
+              <button
+                className="dishes-list-item__button"
+                onClick={handleCountIncrement}
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <button className="dishes-item__button" onClick={handleAddCustom}>
+              В кошик
+            </button>
+          )}
         </div>
       </div>
     </li>

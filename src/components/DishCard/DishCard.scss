@@ -112,6 +112,29 @@
     justify-content: space-around;
     align-items: center;
   }
+
+  &-buttons {
+    height: 36px;
+    width: 126px;
+    background-color: #f3f3f7;
+    color: #696f7a;
+    border-radius: 8px;
+    transition: 0.35s;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &__button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #696f7a;
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
 
 .dishes-item__button {
