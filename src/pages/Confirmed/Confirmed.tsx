@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import OrderingSteps from "../../components/OrderingSteps/OrderingSteps";
 import "./Confirmed.scss";
 
@@ -15,6 +16,9 @@ const Confirmed = (): JSX.Element => {
             Менеджер зв&apos;яжеться з вами наближчим часом, для уточнення
             деталей замовлення.
           </div>
+          <Link to={"/"} className="basketMessge__link">
+            До покупок
+          </Link>
         </section>
       </div>
     </main>
