@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Basket from "./pages/Basket/Basket";
 import Ordering from "./pages/Ordering/Ordering";
 import Confirmed from "./pages/Confirmed";
+import Anchor from "./components/Anchor/Anchor";
 
 import "./normalize.css";
 import "./App.css";
@@ -26,6 +27,7 @@ const App = (): JSX.Element => {
         <Route path="/confirmed" element={<Confirmed />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Anchor />
       <Footer />
     </div>
   );
