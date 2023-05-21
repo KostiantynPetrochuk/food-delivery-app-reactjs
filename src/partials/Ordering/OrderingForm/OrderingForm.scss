@@ -38,6 +38,17 @@
     }
   }
 
+  &-input__message {
+    color: red;
+    margin-top: 4px;
+    opacity: 0;
+    transition: 0.35s;
+
+    &._notValid {
+      opacity: 1;
+    }
+  }
+
   &__input {
     height: 40px;
     width: 500px;
@@ -45,6 +56,11 @@
     border: 2px solid #e2e2e9;
     outline: none;
     padding: 0px 10px;
+    transition: 0.35s;
+
+    &._notValid {
+      border-color: red;
+    }
 
     @media screen and (max-width: 800px) {
       width: 300px;
