@@ -138,4 +138,27 @@
     color: #686466;
     font-weight: 600;
   }
+
+  &-counter-inner {
+    width: 339px;
+    height: 59px;
+    background-color: #f3f3f7;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+    color: #696f7a;
+  }
+
+  &-counter__button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 28px;
+    color: #696f7a;
+    cursor: pointer;
+  }
 }

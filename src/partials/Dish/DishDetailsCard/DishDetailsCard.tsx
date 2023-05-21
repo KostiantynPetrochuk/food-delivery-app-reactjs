@@ -1,11 +1,11 @@
+import { useState } from "react";
 import createIngredientsString from "../../../helpers/createIngredientsString";
 import { DishT } from "../../../pages/Category/Category";
 import { API_PORT, API_URL } from "../../../env";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { addCustom } from "../../../store/customSlice";
+import { addCustom, changeCount } from "../../../store/customSlice";
 
 import "./DishDetailsCard.scss";
-import { useState } from "react";
 
 const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
   const { dish } = props;
@@ -22,6 +22,7 @@ const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
         count: dishCount,
       };
       dispatch(addCustom(currentCustom));
+      setDishCount(1);
     }
   };
 
@@ -41,11 +42,23 @@ const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
     ? createIngredientsString(dish?.ingredients)
     : "";
 
-  const counterClassName = `dish-card-total__counter${
-    isDishInBasket ? " _inBasket" : ""
-  }`;
+  const handleCountIncrement = () => {
+    if (isDishInBasket && dish !== null) {
+      dispatch(
+        changeCount({ _id: dish?._id, updatedCount: isDishInBasket.count + 1 })
+      );
+    }
+  };
 
-  const buttonClassName = `dish-card-total__button${
+  const handleCountDecrement = () => {
+    if (isDishInBasket && dish !== null) {
+      dispatch(
+        changeCount({ _id: dish?._id, updatedCount: isDishInBasket.count - 1 })
+      );
+    }
+  };
+
+  const counterClassName = `dish-card-total__counter${
     isDishInBasket ? " _inBasket" : ""
   }`;
 
@@ -93,11 +106,30 @@ const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
                   </div>
                 </div>
                 <div className="dish-card-total-button-inner">
-                  <button className={buttonClassName} onClick={handleAddCustom}>
-                    {isDishInBasket
-                      ? `В кошику x${isDishInBasket.count}`
-                      : "Додати в кошик"}
-                  </button>
+                  {isDishInBasket ? (
+                    <div className="dish-card-counter-inner">
+                      <button
+                        className="dish-card-counter__button"
+                        onClick={handleCountDecrement}
+                      >
+                        -
+                      </button>
+                      <span className="">{isDishInBasket.count}</span>
+                      <button
+                        className="dish-card-counter__button"
+                        onClick={handleCountIncrement}
+                      >
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      className="dish-card-total__button"
+                      onClick={handleAddCustom}
+                    >
+                      Додати в кошик
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
