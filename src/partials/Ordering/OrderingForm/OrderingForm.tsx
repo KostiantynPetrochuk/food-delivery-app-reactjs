@@ -48,6 +48,7 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         inputName="Телефон"
         inputClassName="phone"
         value={phone}
+        min={10}
         setValue={setPhone}
       />
       <OrderingDeliveryCheckbox delivery={delivery} setDelivery={setDelivery} />

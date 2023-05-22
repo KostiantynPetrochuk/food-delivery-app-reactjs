@@ -20,6 +20,7 @@
     justify-content: space-between;
     padding: 10px 0;
     align-items: center;
+    position: relative;
 
     @media screen and (max-width: 600px) {
       flex-direction: column;
@@ -43,6 +44,13 @@
     margin-top: 4px;
     opacity: 0;
     transition: 0.35s;
+    position: absolute;
+    bottom: -8px;
+    left: 165px;
+
+    @media screen and (max-width: 600px) {
+      left: 0;
+    }
 
     &._notValid {
       opacity: 1;
