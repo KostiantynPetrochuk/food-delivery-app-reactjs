@@ -54,7 +54,7 @@ const OrderingInputNumber = (props: OrderingInputProps): JSX.Element => {
           isInputValid ? "" : " _notValid"
         }`}
       >
-        Заповніть поле. Мінімум 3 символи
+        Заповніть поле. 10 символів
       </span>
     </label>
   );

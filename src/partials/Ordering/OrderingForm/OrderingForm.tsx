@@ -1,4 +1,4 @@
-import { OrderingDeliveryCheckbox, OrderingInput } from "..";
+import { OrderingDeliveryCheckbox, OrderingInputText } from "..";
 import OrderingPayment from "../OrderingPayment/OrderingPayment";
 import OrderingInputNumber from "../OrderingInputNumber";
 import { OrderingFormPropsT } from "./OrderingFormPropsT";
@@ -26,19 +26,19 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
   } = props;
   return (
     <form className="basket-ordering-form">
-      <OrderingInput
+      <OrderingInputText
         inputName="Прізвище"
         inputClassName="firstname"
         value={firstName}
         setValue={setFirstName}
       />
-      <OrderingInput
+      <OrderingInputText
         inputName="Ім'я"
         inputClassName="lastname"
         value={lastName}
         setValue={setLastName}
       />
-      <OrderingInput
+      <OrderingInputText
         inputName="По батькові"
         inputClassName="surrname"
         value={surrName}
@@ -52,17 +52,20 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         setValue={setPhone}
       />
       <OrderingDeliveryCheckbox delivery={delivery} setDelivery={setDelivery} />
-      <OrderingInput
+      <OrderingInputText
         inputName="Адреса доставки"
         inputClassName="address"
         value={address}
         setValue={setAddress}
+        hidden={!delivery}
+        min={10}
       />
-      <OrderingInput
+      <OrderingInputText
         inputName="Час доставки"
         inputClassName="time"
         value={deliveryTime}
         setValue={setDeliveryTime}
+        hidden={!delivery}
       />
       <OrderingPayment
         paymentMethod={paymentMethod}

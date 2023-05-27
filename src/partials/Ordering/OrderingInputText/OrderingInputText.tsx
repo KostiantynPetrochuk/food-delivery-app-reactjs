@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type OrderingInputProps = {
   inputName: string;
@@ -6,10 +6,18 @@ type OrderingInputProps = {
   min?: number;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  hidden?: boolean;
 };
 
 const OrderingInputText = (props: OrderingInputProps): JSX.Element => {
-  const { inputName, inputClassName, min = 3, value, setValue } = props;
+  const {
+    inputName,
+    inputClassName,
+    min = 3,
+    value,
+    setValue,
+    hidden = false,
+  } = props;
   const [isInputValid, setIsInputValid] = useState<Boolean>(true);
   const labelClassName = `basket-ordering-${inputClassName}`;
 
@@ -32,8 +40,21 @@ const OrderingInputText = (props: OrderingInputProps): JSX.Element => {
     setIsInputValid(true);
   };
 
+  useEffect(() => {
+    if (hidden) {
+      setIsInputValid(true);
+      setValue("");
+    }
+  }, [hidden]);
+
   return (
-    <label className={labelClassName}>
+    <label
+      className={labelClassName}
+      style={{
+        opacity: hidden ? 0.3 : 1,
+        pointerEvents: hidden ? "none" : "all",
+      }}
+    >
       <span className="basket-ordering-input__name">{inputName}</span>
       <input
         required

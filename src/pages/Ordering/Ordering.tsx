@@ -31,6 +31,24 @@ const Ordering = (): JSX.Element => {
 
   const handleSubmitOrder = async (): Promise<void> => {
     setLoading(true);
+
+    if (delivery && address.length < 10 && deliveryTime.length < 4) {
+      alert("Вкажіть кореткний час доставки та адресу");
+      setLoading(false);
+      return;
+    }
+
+    if (
+      firstName.length < 3 ||
+      lastName.length < 3 ||
+      surrName.length < 3 ||
+      phone.length < 10
+    ) {
+      setLoading(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
     const dto = {
       firstName,
       lastName,
