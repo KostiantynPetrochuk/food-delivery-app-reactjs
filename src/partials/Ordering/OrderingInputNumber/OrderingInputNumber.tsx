@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./OrderingInputNumber.scss";
 
 type OrderingInputProps = {
@@ -7,11 +6,20 @@ type OrderingInputProps = {
   value: string;
   min: number;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  isInputValid: boolean;
+  setIsInputValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const OrderingInputNumber = (props: OrderingInputProps): JSX.Element => {
-  const { inputName, inputClassName, min, value, setValue } = props;
-  const [isInputValid, setIsInputValid] = useState<Boolean>(true);
+  const {
+    inputName,
+    inputClassName,
+    min,
+    value,
+    setValue,
+    isInputValid,
+    setIsInputValid,
+  } = props;
   const labelClassName = `basket-ordering-${inputClassName}`;
 
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {

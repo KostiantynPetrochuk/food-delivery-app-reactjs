@@ -9,18 +9,30 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
   const {
     firstName,
     setFirstName,
+    isValidFirstName,
+    setIsValidFirstName,
     lastName,
     setLastName,
+    isValidLastName,
+    setIsValidLastName,
     surrName,
     setSurrName,
+    isValidSurrName,
+    setIsValidSurrName,
     phone,
     setPhone,
+    isValidPhone,
+    setIsValidPhone,
     delivery,
     setDelivery,
     address,
     setAddress,
+    isValidAddress,
+    setIsValidAddress,
     deliveryTime,
     setDeliveryTime,
+    isValidDeliveryTime,
+    setIsValidDeliveryTime,
     paymentMethod,
     setPaymentMethod,
   } = props;
@@ -31,18 +43,24 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         inputClassName="firstname"
         value={firstName}
         setValue={setFirstName}
+        isInputValid={isValidFirstName}
+        setIsInputValid={setIsValidFirstName}
       />
       <OrderingInputText
         inputName="Ім'я"
         inputClassName="lastname"
         value={lastName}
         setValue={setLastName}
+        isInputValid={isValidLastName}
+        setIsInputValid={setIsValidLastName}
       />
       <OrderingInputText
         inputName="По батькові"
         inputClassName="surrname"
         value={surrName}
         setValue={setSurrName}
+        isInputValid={isValidSurrName}
+        setIsInputValid={setIsValidSurrName}
       />
       <OrderingInputNumber
         inputName="Телефон"
@@ -50,6 +68,8 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         value={phone}
         min={10}
         setValue={setPhone}
+        isInputValid={isValidPhone}
+        setIsInputValid={setIsValidPhone}
       />
       <OrderingDeliveryCheckbox delivery={delivery} setDelivery={setDelivery} />
       <OrderingInputText
@@ -59,6 +79,8 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         setValue={setAddress}
         hidden={!delivery}
         min={10}
+        isInputValid={isValidAddress}
+        setIsInputValid={setIsValidAddress}
       />
       <OrderingInputText
         inputName="Час доставки"
@@ -66,6 +88,8 @@ const OrderingForm = (props: OrderingFormPropsT): JSX.Element => {
         value={deliveryTime}
         setValue={setDeliveryTime}
         hidden={!delivery}
+        isInputValid={isValidDeliveryTime}
+        setIsInputValid={setIsValidDeliveryTime}
       />
       <OrderingPayment
         paymentMethod={paymentMethod}

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import OrderingButtons from "../../components/OrderingButtons";
 import OrderingSteps from "../../components/OrderingSteps";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/Spinner";
+import Notification from "../../components/Notification";
 import { OrderingComposition, OrderingForm } from "../../partials/Ordering";
 import { useAppSelector } from "../../hooks";
 import { Custom, clearBasket } from "../../store/customSlice";
@@ -17,35 +18,99 @@ const Ordering = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [firstName, setFirstName] = useState<string>("");
+  const [isValidFirstName, setIsValidFirstName] = useState<boolean>(true);
   const [lastName, setLastName] = useState<string>("");
+  const [isValidLastName, setIsValidLastName] = useState<boolean>(true);
   const [surrName, setSurrName] = useState<string>("");
+  const [isValidSurrName, setIsValidSurrName] = useState<boolean>(true);
   const [phone, setPhone] = useState<string>("");
+  const [isValidPhone, setIsValidPhone] = useState<boolean>(true);
   const [delivery, setDelivery] = useState<boolean>(false);
+
   const [address, setAddress] = useState<string>("");
+  const [isValidAddress, setIsValidAddress] = useState<boolean>(true);
   const [deliveryTime, setDeliveryTime] = useState<string>("");
+  const [isValidDeliveryTime, setIsValidDeliveryTime] = useState<boolean>(true);
   const [paymentMethod, setPaymentMethod] = useState<boolean>(false);
+
   const [orderId, setOrderId] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const [showNotification, setShowNotification] = useState(false);
 
   const customsList: Custom[] = useAppSelector((state) => state.customs.list);
 
   const handleSubmitOrder = async (): Promise<void> => {
     setLoading(true);
 
-    if (delivery && address.length < 10 && deliveryTime.length < 4) {
-      alert("Вкажіть кореткний час доставки та адресу");
-      setLoading(false);
-      return;
+    let isValid = true;
+
+    switch (true) {
+      case delivery && deliveryTime.length < 4 && address.length < 10:
+        setLoading(false);
+        setShowNotification(true);
+        //--- repeated ---//
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 3000);
+        //---
+        setIsValidAddress(false);
+        setIsValidDeliveryTime(false);
+        isValid = false;
+        break;
+
+      case delivery && address.length < 10:
+        setLoading(false);
+        setShowNotification(true);
+        //--- repeated ---//
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 3000);
+        //---
+        setIsValidAddress(false);
+        isValid = false;
+        break;
+
+      case delivery && deliveryTime.length < 4:
+        setLoading(false);
+        setShowNotification(true);
+        //--- repeated ---//
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 3000);
+        //---
+        setIsValidDeliveryTime(false);
+        isValid = false;
+        break;
     }
 
-    if (
-      firstName.length < 3 ||
-      lastName.length < 3 ||
-      surrName.length < 3 ||
-      phone.length < 10
-    ) {
+    if (firstName.length < 3) {
+      setIsValidFirstName(false);
+      isValid = false;
+    }
+
+    if (lastName.length < 3) {
+      setIsValidLastName(false);
+      isValid = false;
+    }
+
+    if (surrName.length < 3) {
+      setIsValidSurrName(false);
+      isValid = false;
+    }
+
+    if (phone.length < 10) {
+      setIsValidPhone(false);
+      isValid = false;
+    }
+
+    if (!isValid) {
       setLoading(false);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setShowNotification(true);
+      //--- repeated ---//
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 2000);
+      //---
       return;
     }
 
@@ -119,6 +184,12 @@ const Ordering = (): JSX.Element => {
     <Spinner />
   ) : (
     <main className="main">
+      <Notification
+        message="Заповніть будь ласка, всі поля форми замовлення"
+        visible={showNotification}
+        setVisible={setShowNotification}
+      />
+
       <BreadCrumbs
         pathes={[
           { path: "/", name: "Головна" },
@@ -133,20 +204,32 @@ const Ordering = (): JSX.Element => {
               <OrderingForm
                 firstName={firstName}
                 setFirstName={setFirstName}
+                isValidFirstName={isValidFirstName}
+                setIsValidFirstName={setIsValidFirstName}
                 lastName={lastName}
                 setLastName={setLastName}
+                isValidLastName={isValidLastName}
+                setIsValidLastName={setIsValidLastName}
                 surrName={surrName}
                 setSurrName={setSurrName}
+                isValidSurrName={isValidSurrName}
+                setIsValidSurrName={setIsValidSurrName}
                 phone={phone}
                 setPhone={setPhone}
+                isValidPhone={isValidPhone}
+                setIsValidPhone={setIsValidPhone}
                 delivery={delivery}
                 setDelivery={setDelivery}
                 address={address}
                 setAddress={setAddress}
+                isValidAddress={isValidAddress}
+                setIsValidAddress={setIsValidAddress}
                 paymentMethod={paymentMethod}
                 setPaymentMethod={setPaymentMethod}
                 deliveryTime={deliveryTime}
                 setDeliveryTime={setDeliveryTime}
+                isValidDeliveryTime={isValidDeliveryTime}
+                setIsValidDeliveryTime={setIsValidDeliveryTime}
               />
               <OrderingComposition customsList={customsList} />
             </div>
