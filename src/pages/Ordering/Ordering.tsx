@@ -39,6 +39,12 @@ const Ordering = (): JSX.Element => {
 
   const customsList: Custom[] = useAppSelector((state) => state.customs.list);
 
+  const scrollToTop = () => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 3000);
+  };
+
   const handleSubmitOrder = async (): Promise<void> => {
     setLoading(true);
 
@@ -48,11 +54,7 @@ const Ordering = (): JSX.Element => {
       case delivery && deliveryTime.length < 4 && address.length < 10:
         setLoading(false);
         setShowNotification(true);
-        //--- repeated ---//
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 3000);
-        //---
+        scrollToTop();
         setIsValidAddress(false);
         setIsValidDeliveryTime(false);
         isValid = false;
@@ -61,11 +63,7 @@ const Ordering = (): JSX.Element => {
       case delivery && address.length < 10:
         setLoading(false);
         setShowNotification(true);
-        //--- repeated ---//
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 3000);
-        //---
+        scrollToTop();
         setIsValidAddress(false);
         isValid = false;
         break;
@@ -73,44 +71,52 @@ const Ordering = (): JSX.Element => {
       case delivery && deliveryTime.length < 4:
         setLoading(false);
         setShowNotification(true);
-        //--- repeated ---//
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 3000);
-        //---
+        scrollToTop();
         setIsValidDeliveryTime(false);
         isValid = false;
         break;
     }
 
-    if (firstName.length < 3) {
-      setIsValidFirstName(false);
-      isValid = false;
-    }
+    const formFields = [
+      {
+        name: "firstName",
+        value: firstName,
+        minLength: 3,
+        isValidSetter: setIsValidFirstName,
+      },
+      {
+        name: "lastName",
+        value: lastName,
+        minLength: 3,
+        isValidSetter: setIsValidLastName,
+      },
+      {
+        name: "surrName",
+        value: surrName,
+        minLength: 3,
+        isValidSetter: setIsValidSurrName,
+      },
+      {
+        name: "phone",
+        value: phone,
+        minLength: 10,
+        isValidSetter: setIsValidPhone,
+      },
+    ];
 
-    if (lastName.length < 3) {
-      setIsValidLastName(false);
-      isValid = false;
-    }
-
-    if (surrName.length < 3) {
-      setIsValidSurrName(false);
-      isValid = false;
-    }
-
-    if (phone.length < 10) {
-      setIsValidPhone(false);
-      isValid = false;
+    for (const formField of formFields) {
+      if (formField.value.length < formField.minLength) {
+        formField.isValidSetter(false);
+        isValid = false;
+      } else {
+        formField.isValidSetter(true);
+      }
     }
 
     if (!isValid) {
       setLoading(false);
       setShowNotification(true);
-      //--- repeated ---//
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 2000);
-      //---
+      scrollToTop();
       return;
     }
 
