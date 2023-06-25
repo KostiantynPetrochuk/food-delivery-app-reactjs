@@ -1,9 +1,9 @@
 import { OrderingCompositionItem } from "..";
-import { Custom } from "../../../store/customSlice";
+import { CustomT } from "../../../store/customSlice";
 
 import "./OrderingComposition.scss";
 
-const OrderingComposition = (props: { customsList: Custom[] }): JSX.Element => {
+const OrderingComposition = (props: { customsList: CustomT[] }): JSX.Element => {
   const { customsList } = props;
 
   const orderAmount = customsList.reduce((a, b) => {

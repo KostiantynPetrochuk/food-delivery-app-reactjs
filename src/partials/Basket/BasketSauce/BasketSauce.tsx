@@ -1,5 +1,5 @@
 import { API_PORT, API_URL } from "../../../env";
-import { Custom, addCustom, removeCustom } from "../../../store/customSlice";
+import { CustomT, addCustom, removeCustom } from "../../../store/customSlice";
 import { useAppDispatch } from "../../../hooks";
 import { DishT } from "../../../pages/Category/Category";
 
@@ -8,7 +8,7 @@ import "./BasketSauce.scss";
 type BasketSaucePropsType = {
   _id: string;
   sauce: DishT;
-  customsList: Custom[];
+  customsList: CustomT[];
 };
 
 const BasketSauce = (props: BasketSaucePropsType) => {

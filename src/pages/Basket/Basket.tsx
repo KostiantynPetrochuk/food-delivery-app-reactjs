@@ -55,7 +55,7 @@ const Basket = () => {
             )}
             <BasketSauces sauces={sauces} customsList={customsList} />
             <BasketOrderAmount amount={orderAmount} />
-            <OrderingButtons handleSubmitOrder={null} nextBtnType={null} />
+            <OrderingButtons handleShowOrder={null} nextBtnType={null} />
           </div>
         </div>
       </section>

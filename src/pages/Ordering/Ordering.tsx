@@ -6,9 +6,13 @@ import OrderingButtons from "../../components/OrderingButtons";
 import OrderingSteps from "../../components/OrderingSteps";
 import Spinner from "../../components/Spinner";
 import Notification from "../../components/Notification";
-import { OrderingComposition, OrderingForm } from "../../partials/Ordering";
+import {
+  OrderingComposition,
+  OrderingForm,
+  OrderingModal,
+} from "../../partials/Ordering";
 import { useAppSelector } from "../../hooks";
-import { Custom, clearBasket } from "../../store/customSlice";
+import { CustomT, clearBasket } from "../../store/customSlice";
 import { API_PORT, API_URL } from "../../env";
 import { useAppDispatch } from "../../hooks";
 
@@ -17,6 +21,7 @@ import "./Ordering.scss";
 const Ordering = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const [firstName, setFirstName] = useState<string>("");
   const [isValidFirstName, setIsValidFirstName] = useState<boolean>(true);
   const [lastName, setLastName] = useState<string>("");
@@ -37,7 +42,9 @@ const Ordering = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
   const [showNotification, setShowNotification] = useState(false);
 
-  const customsList: Custom[] = useAppSelector((state) => state.customs.list);
+  const [modalState, setModalState] = useState<boolean>(false);
+
+  const customsList: CustomT[] = useAppSelector((state) => state.customs.list);
 
   const scrollToTop = () => {
     setTimeout(() => {
@@ -54,6 +61,7 @@ const Ordering = (): JSX.Element => {
       case delivery && deliveryTime.length < 4 && address.length < 10:
         setLoading(false);
         setShowNotification(true);
+        setModalState(false);
         scrollToTop();
         setIsValidAddress(false);
         setIsValidDeliveryTime(false);
@@ -63,6 +71,7 @@ const Ordering = (): JSX.Element => {
       case delivery && address.length < 10:
         setLoading(false);
         setShowNotification(true);
+        setModalState(false);
         scrollToTop();
         setIsValidAddress(false);
         isValid = false;
@@ -71,6 +80,7 @@ const Ordering = (): JSX.Element => {
       case delivery && deliveryTime.length < 4:
         setLoading(false);
         setShowNotification(true);
+        setModalState(false);
         scrollToTop();
         setIsValidDeliveryTime(false);
         isValid = false;
@@ -116,6 +126,7 @@ const Ordering = (): JSX.Element => {
     if (!isValid) {
       setLoading(false);
       setShowNotification(true);
+      setModalState(false);
       scrollToTop();
       return;
     }
@@ -147,6 +158,9 @@ const Ordering = (): JSX.Element => {
     const createdOrder = await res.json();
 
     setOrderId(createdOrder._id);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.style.overflow = "auto";
   };
 
   useEffect(() => {
@@ -185,6 +199,12 @@ const Ordering = (): JSX.Element => {
   useEffect(() => {
     setLoading(false);
   }, []);
+
+  const handleCloseModal = () => {
+    setModalState(false);
+    document.body.style.overflow = "auto";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return loading ? (
     <Spinner />
@@ -240,11 +260,26 @@ const Ordering = (): JSX.Element => {
               <OrderingComposition customsList={customsList} />
             </div>
             <OrderingButtons
-              handleSubmitOrder={handleSubmitOrder}
+              handleShowOrder={() => setModalState(true)}
               nextBtnType={"submitOrdering"}
             />
           </div>
         </div>
+
+        <OrderingModal
+          modalState={modalState}
+          handleCloseModal={handleCloseModal}
+          handleSubmitOrder={handleSubmitOrder}
+          customsList={customsList}
+          firstName={firstName}
+          lastName={lastName}
+          surrName={surrName}
+          phone={phone}
+          delivery={delivery}
+          address={address}
+          deliveryTime={deliveryTime}
+          paymentMethod={paymentMethod}
+        />
       </section>
     </main>
   );

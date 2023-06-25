@@ -1,10 +1,10 @@
 import { DishT } from "../../../pages/Category/Category";
-import { Custom } from "../../../store/customSlice";
+import { CustomT } from "../../../store/customSlice";
 import BasketSauce from "../BasketSauce";
 
 import "./BasketSauces.scss";
 
-const BasketSauces = (props: { sauces: DishT[]; customsList: Custom[] }) => {
+const BasketSauces = (props: { sauces: DishT[]; customsList: CustomT[] }) => {
   const { sauces, customsList } = props;
 
   const basketSauceslist = sauces.map((sauce) => (
