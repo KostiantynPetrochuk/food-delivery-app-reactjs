@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { DishT } from "../pages/Category/Category";
 
-export type Custom = {
+export type CustomT = {
   _id: string;
   dish: DishT;
   count: number;
 };
 
 type CustomsState = {
-  list: Custom[];
+  list: CustomT[];
 };
 
 const initialState: CustomsState = {
@@ -29,7 +29,7 @@ const customSlice = createSlice({
   name: "customs",
   initialState,
   reducers: {
-    addCustom(state, action: PayloadAction<Custom>) {
+    addCustom(state, action: PayloadAction<CustomT>) {
       if (action !== undefined) {
         state.list.push(action.payload);
       }

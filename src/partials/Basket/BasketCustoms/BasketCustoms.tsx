@@ -1,11 +1,11 @@
 import { BasketCustom } from "..";
-import { Custom } from "../../../store/customSlice";
+import { CustomT } from "../../../store/customSlice";
 
 import createIngredientsString from "../../../helpers/createIngredientsString";
 
 import "./BasketCustoms.scss";
 
-const BasketCustoms = (props: { customsList: Custom[] }) => {
+const BasketCustoms = (props: { customsList: CustomT[] }) => {
   const { customsList } = props;
 
   const basketCustoms = customsList.map((basketCustom) => {

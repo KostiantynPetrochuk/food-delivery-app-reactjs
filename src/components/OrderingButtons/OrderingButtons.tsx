@@ -6,21 +6,20 @@ import OrderingPrevButton from "../OrderingPrevButton";
 import "./OrderingButtons.scss";
 
 type OrderingButtonsT = {
-  handleSubmitOrder: (() => void) | null;
+  handleShowOrder: (() => void) | null;
   nextBtnType: string | null;
 };
 
 const OrderingButtons = (props: OrderingButtonsT): JSX.Element => {
-  const { handleSubmitOrder, nextBtnType } = props;
+  const { handleShowOrder, nextBtnType } = props;
   const customsList = useAppSelector((state) => state.customs.list);
 
   return (
     <div className="basket-buttons">
       <OrderingPrevButton />
-
       {customsList.length ? (
         <OrderingNextButton
-          handleSubmitOrder={handleSubmitOrder}
+          handleSubmitOrder={handleShowOrder}
           nextBtnType={nextBtnType}
         />
       ) : (
