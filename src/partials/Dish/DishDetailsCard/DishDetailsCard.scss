@@ -30,6 +30,11 @@
     height: 530px;
   }
 
+  @media screen and (max-width: 350px) {
+    max-height: 530px;
+    padding: 15px;
+  }
+
   &-total {
     display: flex;
     justify-content: space-between;
