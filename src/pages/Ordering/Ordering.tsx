@@ -38,9 +38,9 @@ const Ordering = (): JSX.Element => {
   const [isValidDeliveryTime, setIsValidDeliveryTime] = useState<boolean>(true);
   const [paymentMethod, setPaymentMethod] = useState<boolean>(false);
 
-  const [orderId, setOrderId] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [showNotification, setShowNotification] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const [modalState, setModalState] = useState<boolean>(false);
 
@@ -143,58 +143,41 @@ const Ordering = (): JSX.Element => {
       status: false,
     };
 
+    const dtos = customsList.map((custom) => ({
+      dish: custom._id,
+      count: custom.count,
+    }));
+
     const apiUrl: string = `${API_URL}:${API_PORT}`;
 
     const queryString: string = `${apiUrl}/api/order/create`;
 
-    const res: Response = await fetch(queryString, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dto),
-    });
-
-    const createdOrder = await res.json();
-
-    setOrderId(createdOrder._id);
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    document.body.style.overflow = "auto";
-  };
-
-  useEffect(() => {
-    const saveCustoms = async () => {
-      const apiUrl: string = `${API_URL}:${API_PORT}`;
-
-      const dtos = customsList.map((custom) => ({
-        dish: custom._id,
-        order: orderId,
-        count: custom.count,
-      }));
-
-      const queryString: string = `${apiUrl}/api/custom/createMany`;
-
+    try {
       const res: Response = await fetch(queryString, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(dtos),
+        body: JSON.stringify({ dto, dtos }),
       });
 
-      const result = await res.json();
-      if (result) {
+      const createdOrder = await res.json();
+
+      if (createdOrder) {
+        dispatch(clearBasket());
+        setLoading(false);
         navigate("/confirmed");
       }
-
-      dispatch(clearBasket());
-    };
-
-    if (orderId) {
-      saveCustoms();
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      setModalState(false);
+      setShowErrorMessage(true);
     }
-  }, [orderId, customsList, dispatch, navigate]);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.style.overflow = "auto";
+  };
 
   useEffect(() => {
     setLoading(false);
@@ -215,7 +198,11 @@ const Ordering = (): JSX.Element => {
         visible={showNotification}
         setVisible={setShowNotification}
       />
-
+      <Notification
+        message="Сервер не відповідає. Будь ласка, спробуйте пізніше"
+        visible={showErrorMessage}
+        setVisible={setShowErrorMessage}
+      />
       <BreadCrumbs
         pathes={[
           { path: "/", name: "Головна" },
