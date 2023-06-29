@@ -1,5 +1,5 @@
 import { HomeNoveltyItem } from "..";
-import { API_URL, API_PORT } from "../../../env";
+import { API_URL } from "../../../env";
 import { DishT } from "../../../pages/Category/Category";
 
 import "./HomeNovelty.scss";
@@ -10,7 +10,7 @@ type HomeNoveltyPropsType = {
 
 const HomeNovelty = (props: HomeNoveltyPropsType): JSX.Element => {
   const { novelties } = props;
-  const apiUrl = `${API_URL}:${API_PORT}`;
+  const apiUrl = `${API_URL}`;
 
   const noveltiesList = novelties?.map(
     ({ _id, imagePath, name, price, slug }) => (

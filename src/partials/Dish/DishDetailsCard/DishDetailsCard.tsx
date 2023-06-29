@@ -1,7 +1,7 @@
 import { useState } from "react";
 import createIngredientsString from "../../../helpers/createIngredientsString";
 import { DishT } from "../../../pages/Category/Category";
-import { API_PORT, API_URL } from "../../../env";
+import { API_URL } from "../../../env";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { addCustom, changeCount } from "../../../store/customSlice";
 
@@ -36,7 +36,7 @@ const DishDetailsCard = (props: { dish: DishT | null }): JSX.Element => {
     setDishCount(dishCount - 1);
   };
 
-  const apiUrl = `${API_URL}:${API_PORT}`;
+  const apiUrl = `${API_URL}`;
 
   const ingredientsString: string = dish?.ingredients.length
     ? createIngredientsString(dish?.ingredients)
