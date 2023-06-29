@@ -1,4 +1,4 @@
-import { API_PORT, API_URL } from "../../../env";
+import { API_URL } from "../../../env";
 import { CustomT, addCustom, removeCustom } from "../../../store/customSlice";
 import { useAppDispatch } from "../../../hooks";
 import { DishT } from "../../../pages/Category/Category";
@@ -33,7 +33,7 @@ const BasketSauce = (props: BasketSaucePropsType) => {
     dispatch(addCustom(currentCustom));
   };
 
-  const apiUrl = `${API_URL}:${API_PORT}`;
+  const apiUrl = `${API_URL}`;
 
   return (
     <li

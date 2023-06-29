@@ -1,4 +1,4 @@
-import { API_PORT, API_URL } from "../../../env";
+import { API_URL } from "../../../env";
 
 import "./HomeEventsItem.scss";
 
@@ -8,7 +8,7 @@ type HomeEventsItemPropsType = {
 
 const HomeEventsItem = (props: HomeEventsItemPropsType): JSX.Element => {
   const { imagePath } = props;
-  const apiUrl = `${API_URL}:${API_PORT}`;
+  const apiUrl = `${API_URL}`;
 
   return (
     <li className="events-list-item">

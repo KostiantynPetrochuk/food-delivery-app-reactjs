@@ -1,4 +1,4 @@
-import { API_PORT, API_URL } from "../../../env";
+import { API_URL } from "../../../env";
 
 import { useAppDispatch } from "../../../hooks";
 import { changeCount, removeCustom } from "../../../store/customSlice";
@@ -13,7 +13,7 @@ type BasketButtonDropdownItemPropTypes = {
   price: number;
 };
 
-const apiUrl = `${API_URL}:${API_PORT}`;
+const apiUrl = `${API_URL}`;
 
 const BasketButtonDropdownItem = (
   props: BasketButtonDropdownItemPropTypes

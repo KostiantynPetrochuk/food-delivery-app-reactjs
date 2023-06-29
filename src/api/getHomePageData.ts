@@ -1,7 +1,7 @@
-import { API_URL, API_PORT } from "../env";
+import { API_URL } from "../env";
 
 const getHomePageData = async () => {
-  const apiUrl: string = `${API_URL}:${API_PORT}`;
+  const apiUrl: string = `${API_URL}`;
 
   const queryString: string = `${apiUrl}/api/homePage/`;
 

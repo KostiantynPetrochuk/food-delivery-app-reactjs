@@ -13,7 +13,7 @@ import {
 } from "../../partials/Ordering";
 import { useAppSelector } from "../../hooks";
 import { CustomT, clearBasket } from "../../store/customSlice";
-import { API_PORT, API_URL } from "../../env";
+import { API_URL } from "../../env";
 import { useAppDispatch } from "../../hooks";
 
 import "./Ordering.scss";
@@ -148,7 +148,7 @@ const Ordering = (): JSX.Element => {
       count: custom.count,
     }));
 
-    const apiUrl: string = `${API_URL}:${API_PORT}`;
+    const apiUrl: string = `${API_URL}`;
 
     const queryString: string = `${apiUrl}/api/order/create`;
 

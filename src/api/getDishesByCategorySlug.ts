@@ -1,12 +1,12 @@
 import { DishT } from "../pages/Category/Category";
-import { API_URL, API_PORT } from "../env";
+import { API_URL } from "../env";
 
 const getDishesByCategorySlug = async (
   slug: string | undefined
 ): Promise<DishT[]> => {
   if (!slug) return [];
 
-  const apiUrl: string = `${API_URL}:${API_PORT}`;
+  const apiUrl: string = `${API_URL}`;
 
   const queryString: string = `${apiUrl}/api/dish/byDishCategorySlug/${slug}`;
 

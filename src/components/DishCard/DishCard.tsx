@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { API_PORT, API_URL } from "../../env";
+import { API_URL } from "../../env";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addCustom, changeCount } from "../../store/customSlice";
 import { DishT } from "../../pages/Category/Category";
@@ -42,7 +42,7 @@ const DishCard = (props: { dish: DishT }): JSX.Element => {
     }
   };
 
-  const apiUrl = `${API_URL}:${API_PORT}`;
+  const apiUrl = `${API_URL}`;
 
   return (
     <li className="dishes-list-item">

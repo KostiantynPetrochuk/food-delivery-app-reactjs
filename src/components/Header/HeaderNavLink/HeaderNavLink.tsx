@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { API_PORT, API_URL } from "../../../env";
+import { API_URL } from "../../../env";
 
 import "./HeaderNavLink.scss";
 
@@ -11,7 +11,7 @@ type HeaderNavLinkPropsType = {
 
 const HeaderNavLink = (props: HeaderNavLinkPropsType): JSX.Element => {
   const { logoPath, categoryName, slug } = props;
-  const apiUrl: string = `${API_URL}:${API_PORT}`;
+  const apiUrl: string = `${API_URL}`;
 
   return (
     <li className="header-bot-menu-list-item">
