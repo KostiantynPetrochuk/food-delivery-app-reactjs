@@ -19,7 +19,7 @@ const HeaderNavLink = (props: HeaderNavLinkPropsType): JSX.Element => {
         to={`/category/${slug}`}
         className="header-bot-menu-list-item__link"
       >
-        <img src={`${apiUrl}${logoPath}`} alt={""} />
+        <img src={logoPath} alt={""} />
         <span>{categoryName}</span>
       </Link>
     </li>
