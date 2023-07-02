@@ -12,7 +12,7 @@ export const DISH_CATEGORIES: DishCategory[] = [
     _id: "63f3d0ae24e1d071ed3d0749",
     name: "Паста",
     __v: 0,
-    imagePath: "/static/categories/pasta.webp",
+    imagePath: "/uploads/categories/pasta.webp",
     logoPath: "/static/categories_logo/pasta.svg",
     slug: "pasta",
   },
