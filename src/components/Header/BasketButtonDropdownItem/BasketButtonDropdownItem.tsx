@@ -1,5 +1,3 @@
-import { API_URL } from "../../../env";
-
 import { useAppDispatch } from "../../../hooks";
 import { changeCount, removeCustom } from "../../../store/customSlice";
 
@@ -12,8 +10,6 @@ type BasketButtonDropdownItemPropTypes = {
   count: number;
   price: number;
 };
-
-const apiUrl = `${API_URL}`;
 
 const BasketButtonDropdownItem = (
   props: BasketButtonDropdownItemPropTypes
@@ -37,11 +33,7 @@ const BasketButtonDropdownItem = (
   return (
     <li className="header-bot-basket-dropdown-list-item">
       <div className="header-bot-basket-left">
-        <img
-          className="header-bot-basket__img"
-          src={`${apiUrl}${imagePath}`}
-          alt={""}
-        />
+        <img className="header-bot-basket__img" src={imagePath} alt={""} />
       </div>
       <div className="header-bot-basket-middle">
         <span className="header-bot-basket__dish">{dishName}</span>

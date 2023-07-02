@@ -1,4 +1,3 @@
-import { API_URL } from "../../../env";
 import { useAppDispatch } from "../../../hooks";
 import { changeCount, removeCustom } from "../../../store/customSlice";
 
@@ -15,8 +14,6 @@ interface BasketCustomPropsType {
 
 const BasketCustom = (props: BasketCustomPropsType) => {
   const { _id, imagePath, name, ingredients, price, count } = props;
-
-  const apiUrl = `${API_URL}`;
 
   const dispatch = useAppDispatch();
 
@@ -38,7 +35,7 @@ const BasketCustom = (props: BasketCustomPropsType) => {
         <div className="basket-custom-img-inner">
           <img
             className="basket-custom__img"
-            src={`${apiUrl}${imagePath}`}
+            src={imagePath}
             alt={""}
             width={500}
             height={500}

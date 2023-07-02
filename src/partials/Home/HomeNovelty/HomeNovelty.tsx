@@ -1,5 +1,4 @@
 import { HomeNoveltyItem } from "..";
-import { API_URL } from "../../../env";
 import { DishT } from "../../../pages/Category/Category";
 
 import "./HomeNovelty.scss";
@@ -10,13 +9,12 @@ type HomeNoveltyPropsType = {
 
 const HomeNovelty = (props: HomeNoveltyPropsType): JSX.Element => {
   const { novelties } = props;
-  const apiUrl = `${API_URL}`;
 
   const noveltiesList = novelties?.map(
     ({ _id, imagePath, name, price, slug }) => (
       <HomeNoveltyItem
         key={_id}
-        imagePath={`${apiUrl}${imagePath}`}
+        imagePath={imagePath}
         name={name}
         price={price}
         slug={slug}

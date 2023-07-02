@@ -1,4 +1,3 @@
-import { API_URL } from "../../../env";
 import { CustomT, addCustom, removeCustom } from "../../../store/customSlice";
 import { useAppDispatch } from "../../../hooks";
 import { DishT } from "../../../pages/Category/Category";
@@ -33,8 +32,6 @@ const BasketSauce = (props: BasketSaucePropsType) => {
     dispatch(addCustom(currentCustom));
   };
 
-  const apiUrl = `${API_URL}`;
-
   return (
     <li
       onClick={handleClick}
@@ -43,7 +40,7 @@ const BasketSauce = (props: BasketSaucePropsType) => {
       <div className="basket-sauces-item-img-inner">
         <img
           className="basket-sauces-item__img"
-          src={`${apiUrl}${imagePath}`}
+          src={imagePath}
           alt={""}
           width={500}
           height={500}
