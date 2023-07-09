@@ -25,7 +25,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onOk, children }) => {
     if (isOpen) {
       document.body.classList.add("bodyOverflow-hidden");
       document.body.classList.remove("bodyOverflow-auto");
+      return;
     }
+    document.body.classList.remove("bodyOverflow-hidden");
+    document.body.classList.add("bodyOverflow-auto");
   }, [isOpen]);
 
   if (!isOpen && !isAnimating) {
