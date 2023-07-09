@@ -176,7 +176,8 @@ const Ordering = (): JSX.Element => {
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
-    document.body.style.overflow = "auto";
+    document.body.classList.remove("bodyOverflow-hidden");
+    document.body.classList.add("bodyOverflow-auto");
   };
 
   useEffect(() => {
@@ -185,7 +186,8 @@ const Ordering = (): JSX.Element => {
 
   const handleCloseModal = () => {
     setModalState(false);
-    document.body.style.overflow = "auto";
+    document.body.classList.remove("bodyOverflow-hidden");
+    document.body.classList.add("bodyOverflow-auto");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

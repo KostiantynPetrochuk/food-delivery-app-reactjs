@@ -8,3 +8,11 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
+
+.bodyOverflow-hidden {
+  overflow: hidden;
+}
+
+.bodyOverflow-auto {
+  overflow: auto;
+}
