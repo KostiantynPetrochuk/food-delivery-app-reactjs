@@ -25,12 +25,15 @@
   &-details {
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
+    padding: 0 40px 0 20px;
 
     &__title {
       color: #000;
       font-weight: bold;
       font-size: 19px;
+      @media screen and (max-width: 800px) {
+        font-size: 16px;
+      }
     }
 
     &__ingredients {

@@ -63,3 +63,36 @@
     }
   }
 }
+
+.mob-menu {
+  &-inner {
+    display: flex;
+    align-items: center;
+  }
+  &-basket-link {
+    height: 50px;
+    width: 70px;
+    position: relative;
+
+    &__img {
+      height: 50px;
+      width: 50px;
+    }
+
+    &__count {
+      position: absolute;
+      top: 2px;
+      right: 18px;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f7d22d;
+      font-weight: bold;
+      font-size: 18px;
+      color: black;
+    }
+  }
+}

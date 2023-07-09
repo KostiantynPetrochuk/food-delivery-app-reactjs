@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../hooks";
 
 import "./HeaderMob.scss";
 
@@ -10,6 +11,8 @@ type HeaderMobPropsType = {
 
 const HeaderMob = (props: HeaderMobPropsType): JSX.Element => {
   const { mobMenuState, setMobMenuState } = props;
+  const customsList = useAppSelector((state) => state.customs.list);
+  const countOfDishes = customsList.reduce((a, b) => a + b.count, 0);
 
   const handleMenuButtonClick = (): void => {
     mobMenuState ? setMobMenuState(false) : setMobMenuState(true);
@@ -31,14 +34,27 @@ const HeaderMob = (props: HeaderMobPropsType): JSX.Element => {
           <img className="header-logo__img" src={"/img/logo.jpg"} alt={""} />
         </Link>
       </div>
-      <div
-        className={`mob-menu__btn ${mobMenuState ? " visible" : ""}`}
-        id="mob_menu_btn"
-        onClick={handleMenuButtonClick}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+
+      <div className="mob-menu-inner">
+        <Link className="mob-menu-basket-link" to={"/basket"}>
+          <img
+            className="mob-menu-basket-link__img"
+            src="/img/basket.svg"
+            alt=""
+          />
+          {countOfDishes ? (
+            <span className="mob-menu-basket-link__count">{countOfDishes}</span>
+          ) : null}
+        </Link>
+        <div
+          className={`mob-menu__btn ${mobMenuState ? " visible" : ""}`}
+          id="mob_menu_btn"
+          onClick={handleMenuButtonClick}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   );
